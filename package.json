@@ -1,0 +1,11 @@
+{
+  "name": "@folhasdagua/design-system-components",
+  "version": "0.1.0",
+  "description": "Componentes react do design system",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "author": "FlavioZanoni",
+  "license": "ISC"
+}
