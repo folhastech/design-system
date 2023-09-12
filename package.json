@@ -1,5 +1,5 @@
 {
-  "name": "@folhasdagua/design-system-components",
+  "name": "@folhastech/design-system-components",
   "version": "0.1.0",
   "description": "Componentes react do design system",
   "main": "index.js",
@@ -9,6 +9,6 @@
   "author": "FlavioZanoni",
   "license": "ISC",
   "publishConfig": {
-    "@folhasdagua:registry": "https://npm.pkg.github.com"
+    "@folhastech:registry": "https://npm.pkg.github.com"
   }
 }

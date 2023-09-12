@@ -1,4 +1,4 @@
-name: design-system-components
+name: design-system-components release package
 
 on:
   release:
