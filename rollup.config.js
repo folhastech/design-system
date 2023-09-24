@@ -7,14 +7,13 @@ const bundle = (config) => ({
   input: "src/index.ts",
   external: (id) => !/^[./]/.test(id),
 })
-
 export default [
   bundle({
     plugins: [esbuild()],
     output: [
       {
         dir: "dist",
-        format: "cjs",
+        format: "es",
         exports: "named",
         preserveModules: true, // Keep directory structure and files
       },
@@ -24,7 +23,7 @@ export default [
     plugins: [dts()],
     output: {
       dir: "dist",
-      format: "cjs",
+      format: "es",
       exports: "named",
       preserveModules: true, // Keep directory structure and files
     },
