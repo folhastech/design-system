@@ -16,22 +16,20 @@ export default [
     plugins: [esbuild()],
     output: [
       {
-        file: `${name}.js`,
+        dir: "dist",
         format: "cjs",
-        sourcemap: true,
-      },
-      {
-        file: `${name}.mjs`,
-        format: "es",
-        sourcemap: true,
+        exports: "named",
+        preserveModules: true, // Keep directory structure and files
       },
     ],
   }),
   bundle({
     plugins: [dts()],
     output: {
-      file: `${name}.d.ts`,
-      format: "es",
+      dir: "dist",
+      format: "cjs",
+      exports: "named",
+      preserveModules: true, // Keep directory structure and files
     },
   }),
 ]

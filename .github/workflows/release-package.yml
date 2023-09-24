@@ -19,6 +19,9 @@ jobs:
         run: cp package.json dist
       - name: Copy npmrc to dist
         run: cp .npmrc dist
+      - name: cd to dist
+        run: |
+          cd dist
       - name: Publish to GitHub Packages
         run: |
           npm ci

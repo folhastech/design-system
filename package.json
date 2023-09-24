@@ -58,10 +58,7 @@
     "typescript": "^5.2.2",
     "vite": "^4.4.9"
   },
-  "main": "dist/cjs/index.js",
+  "main": "dist/index.js",
   "module": "dist/esm/index.js",
-  "files": [
-    "dist"
-  ],
   "types": "dist/index.d.ts"
 }
