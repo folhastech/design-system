@@ -1,4 +1,4 @@
-export * from "./TabButton"
-export * from "./TabContent"
-export * from "./TabList"
-export * from "./Tabs"
+export { TabButton } from "./TabButton"
+export { TabContent } from "./TabContent"
+export { TabList } from "./TabList"
+export { Tabs } from "./Tabs"
