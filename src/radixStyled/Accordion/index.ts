@@ -1,3 +1,3 @@
 export { AccordionItem } from "./AccordionItem"
-export { Accordion } from "./AccordionRoot"
+export { Accordion } from "./Accordion"
 export { AccordionContent } from "./AccoridonContent"
