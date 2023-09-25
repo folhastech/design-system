@@ -18,11 +18,7 @@
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@components/*": ["./*"],
-      "@radixStyled/*": ["./radixStyled/*"]
-    }
+    ]
   },
   "exclude": ["node_modules"]
 }

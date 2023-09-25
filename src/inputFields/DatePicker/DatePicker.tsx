@@ -1,4 +1,3 @@
-import { Popover } from "@radixStyled/Popover"
 import clsx from "clsx"
 import { format, isValid, parse, setDefaultOptions } from "date-fns"
 import { ptBR } from "date-fns/locale"
@@ -12,6 +11,7 @@ import {
   useController,
 } from "react-hook-form"
 import { Icon } from "../../Icon"
+import { Popover } from "../../radixStyled/Popover"
 
 setDefaultOptions({ locale: ptBR })
 
