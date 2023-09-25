@@ -1,4 +1,3 @@
-import { DefType, Pagination } from "@api/types"
 import * as SelectRoot from "@radix-ui/react-select"
 import { InfiniteData } from "@tanstack/react-query"
 import clsx from "clsx"
@@ -12,6 +11,7 @@ import {
 } from "react-hook-form"
 import { Icon } from "../../Icon"
 import { SelectItem } from "./SelectItem"
+import { DefType, Pagination } from "./types"
 
 type Props<T extends FieldValues> = {
   label?: string

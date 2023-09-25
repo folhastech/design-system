@@ -20,8 +20,8 @@
       }
     ],
     "paths": {
-      "@components/*": ["./components/*"],
-      "@radixStyled/*": ["./components/radixStyled/*"]
+      "@components/*": ["./*"],
+      "@radixStyled/*": ["./radixStyled/*"]
     }
   },
   "exclude": ["node_modules"]
