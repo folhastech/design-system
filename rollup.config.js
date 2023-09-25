@@ -1,14 +1,9 @@
 import dts from "rollup-plugin-dts"
 import esbuild from "rollup-plugin-esbuild"
 
-const bundle = (config) => ({
-  ...config,
-  input: "src/index.ts",
-  external: (id) => !/^[./]/.test(id),
-})
-
 export default [
-  bundle({
+  {
+    input: "src/index.ts",
     plugins: [esbuild()],
     output: [
       {
@@ -16,17 +11,21 @@ export default [
         format: "es",
         exports: "named",
         preserveModules: true,
-        entryFileNames: ({ name }) => `${name}/index.js`, // Use this to generate the desired structure
+        entryFileNames: ({ name }) =>
+          `${name.replace(/^.*[\\\/]/, "")}/index.js`,
       },
     ],
-  }),
-  bundle({
+  },
+  {
+    input: "src/index.ts",
     plugins: [dts()],
     output: {
       dir: "dist",
       format: "es",
       exports: "named",
       preserveModules: true,
+      entryFileNames: ({ name }) =>
+        `${name.replace(/^.*[\\\/]/, "")}/index.d.ts`,
     },
-  }),
+  },
 ]
