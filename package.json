@@ -1,12 +1,13 @@
 {
   "name": "@folhastech/design-system",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Componentes react do design system",
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run build-tailwind",
     "build-storybook": "storybook build",
-    "storybook": "storybook dev -p 6006"
+    "storybook": "storybook dev -p 6006",
+    "build-tailwind": "NODE_ENV=production npx tailwindcss -i ./src/index.css -o ./dist/globals.css --postcss --minify"
   },
   "author": "FlavioZanoni",
   "license": "ISC",
