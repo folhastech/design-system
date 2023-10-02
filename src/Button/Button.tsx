@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import React from "react"
 import { Icon } from "../Icon"
-
+import "../index.css"
 export type ButtonProps = {
   onClick?: () => void
   variant?: "primary" | "text" | "outlined"
