@@ -23,12 +23,12 @@ export const Drawer: React.FC<DrawerProps> = React.forwardRef<
   const [height, setHeight] = useState(50)
 
   useEffect(() => {
-    if (contentRef.current) {
+    if (contentRef?.current) {
       setHeight(
         contentRef.current.scrollHeight + 68 /* 68 sao as bordas e paddings */
       )
     }
-  }, [contentRef.current])
+  }, [contentRef?.current])
 
   return (
     <DialogRoot.Root open={open}>
