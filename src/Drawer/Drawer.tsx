@@ -37,7 +37,7 @@ export const Drawer: React.FC<DrawerProps> = React.forwardRef<
           <Button onClick={() => setOpen(true)} {...button} />
         </DialogRoot.Trigger>
       )}
-      <DialogRoot.Portal className="relative">
+      <DialogRoot.Portal>
         <DialogRoot.Overlay
           onClick={() => {
             // resets the height
