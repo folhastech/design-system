@@ -148,32 +148,34 @@ export const Select = React.forwardRef(
               <Icon name="expand_more" />
             </SelectRoot.Icon>
           </SelectRoot.Trigger>
-          <SelectRoot.Content position="popper" className="w-full">
-            <SelectRoot.Viewport
-              onScroll={(e) => {
-                if (!getMoreOptions) return
-                if (
-                  e.currentTarget.scrollTop + e.currentTarget.clientHeight >=
-                  e.currentTarget.scrollHeight
-                ) {
-                  getMoreOptions()
-                }
-              }}
-              className="z-40 m-2 mr-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width"
-            >
-              {opt?.map((item) => {
-                return (
-                  <SelectItem
-                    key={item?.value}
-                    value={item?.value}
-                    disabled={item?.disabled}
-                  >
-                    {item?.label}
-                  </SelectItem>
-                )
-              })}
-            </SelectRoot.Viewport>
-          </SelectRoot.Content>
+          <SelectRoot.Portal>
+            <SelectRoot.Content position="popper" className="w-full">
+              <SelectRoot.Viewport
+                onScroll={(e) => {
+                  if (!getMoreOptions) return
+                  if (
+                    e.currentTarget.scrollTop + e.currentTarget.clientHeight >=
+                    e.currentTarget.scrollHeight
+                  ) {
+                    getMoreOptions()
+                  }
+                }}
+                className="z-40 m-2 mr-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width"
+              >
+                {opt?.map((item) => {
+                  return (
+                    <SelectItem
+                      key={item?.value}
+                      value={item?.value}
+                      disabled={item?.disabled}
+                    >
+                      {item?.label}
+                    </SelectItem>
+                  )
+                })}
+              </SelectRoot.Viewport>
+            </SelectRoot.Content>
+          </SelectRoot.Portal>
         </SelectRoot.Root>
       </div>
     )
