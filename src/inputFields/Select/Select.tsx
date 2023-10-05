@@ -149,7 +149,6 @@ export const Select = React.forwardRef(
             </SelectRoot.Icon>
           </SelectRoot.Trigger>
           <SelectRoot.Content
-            position="popper"
             className="w-full"
             ref={(ref) =>
               ref?.addEventListener("touchend", (e) => e.preventDefault())

@@ -2,9 +2,8 @@ import { Meta, StoryFn } from "@storybook/react"
 import { useForm } from "react-hook-form"
 import { Select } from "./Select"
 
-const Template: StoryFn = (args) => {
+const Template: StoryFn<typeof Select> = (args) => {
   const { control, register } = useForm()
-  console.log(args)
   return (
     <Select
       {...args}

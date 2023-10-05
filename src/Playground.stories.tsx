@@ -28,7 +28,7 @@ const Template: StoryFn = (args) => {
 }
 
 export default {
-  title: "Components/Playground",
+  title: "Playground/Playground",
   component: Template,
   args: {
     placeholder: "Select",
