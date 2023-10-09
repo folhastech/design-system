@@ -4,10 +4,16 @@ import React from "react"
 type IconProps = {
   name: string
   className?: string
+  onClick?: (e: React.SyntheticEvent) => void
 }
 
-export const Icon: React.FC<IconProps> = ({ name, className }) => {
+export const Icon: React.FC<IconProps> = ({ name, className, onClick }) => {
   return (
-    <span className={clsx("material-symbols-outlined", className)}>{name}</span>
+    <span
+      onClick={onClick}
+      className={clsx("material-symbols-outlined", className)}
+    >
+      {name}
+    </span>
   )
 }

@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React from "react"
+import React, { useRef } from "react"
 import {
   Control,
   FieldValues,
@@ -7,8 +7,9 @@ import {
   RegisterOptions,
   useController,
 } from "react-hook-form"
+import { Icon } from "../../Icon"
 
-type Props<T extends FieldValues> = {
+export type Props<T extends FieldValues> = {
   label?: string
   type?: string
   placeholder: string
@@ -21,8 +22,8 @@ type Props<T extends FieldValues> = {
   autoComplete?: string
   onClick?: () => void
   disabled?: boolean
-  customOnChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   minHour?: string
+  icon?: string
 }
 
 export const TextField = React.forwardRef(
@@ -39,11 +40,13 @@ export const TextField = React.forwardRef(
       autoComplete = "off",
       onClick,
       disabled,
-      customOnChange,
       minHour,
+      icon,
     }: Props<T>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
+    const ownRef = useRef<HTMLInputElement>(null)
+
     const {
       field: { onChange, onBlur, value },
       fieldState: { invalid },
@@ -53,46 +56,61 @@ export const TextField = React.forwardRef(
     return (
       <div className={clsx("flex flex-col", className)}>
         {label && <label>{label}</label>}
-        <input
-          readOnly={readOnly}
-          ref={ref}
-          className={clsx(
-            "apearance-none mb-2 h-[45px] w-full border-b-2 border-gray-30 focus:outline-none",
-            {
-              "border-red-500 text-red-500 placeholder:text-red-500": invalid,
-              "placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10":
-                placeholder,
-            },
-            {
-              "border-gray-30 text-gray-30 placeholder:text-gray-30": disabled,
-            }
-          )}
-          type={type}
-          placeholder={placeholder}
-          value={value || ""}
-          onChange={(e) => {
-            if (minHour) {
-              //pick the hour in hh:mm format and copare with selected value, if lesser in hour and minute, set current hour and minute
-              const currentHour = new Date().getHours()
-              const currentMinute = new Date().getMinutes()
-              const selectedHour = parseInt(e.target.value.split(":")[0])
 
-              if (selectedHour < currentHour) {
-                onChange(
-                  `${currentHour.toString().padStart(2, "0")}:${currentMinute
-                    .toString()
-                    .padStart(2, "0")}`
-                )
-                return
+        <div className="flex flex-row gap-2 items-center mb-2 h-[45px] w-full border-b-2 border-gray-30 focus:outline-none">
+          {icon && (
+            <Icon
+              onClick={() => {
+                if (!ownRef) return
+                ownRef.current?.focus()
+              }}
+              name={icon}
+            />
+          )}
+
+          <input
+            readOnly={readOnly}
+            ref={ownRef}
+            className={clsx(
+              "apearance-none  w-full focus:outline-none",
+              {
+                "border-red-500 text-red-500 placeholder:text-red-500": invalid,
+                "placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10":
+                  placeholder,
+              },
+              {
+                "border-gray-30 text-gray-30 placeholder:text-gray-30":
+                  disabled,
               }
-            }
-            onChange(e)
-          }}
-          onBlur={onBlur}
-          autoComplete={autoComplete}
-          onClick={onClick}
-          disabled={disabled}
-        />
+            )}
+            type={type}
+            placeholder={placeholder}
+            value={value || ""}
+            onChange={(e) => {
+              if (minHour) {
+                //pick the hour in hh:mm format and copare with selected value, if lesser in hour and minute, set current hour and minute
+                const currentHour = new Date().getHours()
+                const currentMinute = new Date().getMinutes()
+                const selectedHour = parseInt(e.target.value.split(":")[0])
+
+                if (selectedHour < currentHour) {
+                  onChange(
+                    `${currentHour.toString().padStart(2, "0")}:${currentMinute
+                      .toString()
+                      .padStart(2, "0")}`
+                  )
+                  return
+                }
+              }
+              onChange(e)
+            }}
+            onBlur={onBlur}
+            autoComplete={autoComplete}
+            onClick={onClick}
+            disabled={disabled}
+          />
+        </div>
+
         <div>
           {errors && (
             <span className="text-sm text-red-500">
