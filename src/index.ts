@@ -1,5 +1,6 @@
 export * from "./Button"
 export * from "./Drawer"
 export * from "./StepForm"
+export * from "./hooks/useSize"
 export * from "./inputFields"
 export * from "./radixStyled"

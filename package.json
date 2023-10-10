@@ -1,6 +1,6 @@
 {
   "name": "@folhastech/design-system",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "Componentes react do design system",
   "type": "module",
   "scripts": {
@@ -49,7 +49,6 @@
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
     "vite-plugin-dts": "^3.6.0"
-    
   },
   "peerDependencies": {
     "date-fns": "^2.30.0",
