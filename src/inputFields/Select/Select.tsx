@@ -148,13 +148,7 @@ export const Select = React.forwardRef(
               <Icon name="expand_more" />
             </SelectRoot.Icon>
           </SelectRoot.Trigger>
-          <SelectRoot.Content
-            className="w-full"
-            ref={(ref) => {
-              ref?.addEventListener("touchstart", (e) => e.preventDefault())
-              ref?.addEventListener("touchend", (e) => e.preventDefault())
-            }}
-          >
+          <SelectRoot.Content className="w-full" position="popper">
             <SelectRoot.Viewport
               onScroll={(e) => {
                 if (!getMoreOptions) return

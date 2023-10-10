@@ -4,6 +4,7 @@
   "description": "Componentes react do design system",
   "type": "module",
   "scripts": {
+    "dev": "vite",
     "build": "rollup -c",
     "build-storybook": "storybook build",
     "storybook": "storybook dev -p 6006"
@@ -45,7 +46,8 @@
     "tailwindcss-radix": "^2.8.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
-    "vite-plugin-dts": "^3.6.0"
+    "vite-plugin-dts": "^3.6.0",
+    "@vitejs/plugin-react": "^4.0.4"
   },
   "peerDependencies": {
     "date-fns": "^2.30.0",
