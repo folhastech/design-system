@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { Drawer } from "../dist/Drawer"
+import { Drawer } from "./Drawer"
 import { Select } from "./inputFields/Select"
 
 function App() {

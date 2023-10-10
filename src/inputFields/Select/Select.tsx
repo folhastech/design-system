@@ -142,13 +142,29 @@ export const Select = React.forwardRef(
               },
               className
             )}
+            // preventing autoclose on select or click outside, this is a bug from radix
+            onPointerDown={(e) => {
+              e.stopPropagation()
+            }}
+            onTouchStart={(e) => {
+              e.stopPropagation()
+            }}
           >
             <SelectRoot.Value>{optionLabel || placeholder}</SelectRoot.Value>
             <SelectRoot.Icon>
               <Icon name="expand_more" />
             </SelectRoot.Icon>
           </SelectRoot.Trigger>
-          <SelectRoot.Content className="w-full" position="popper">
+          <SelectRoot.Content
+            className="w-full"
+            // preventing autoclose on select or click outside, this is a bug from radix
+            onPointerDownOutside={(e) => {
+              e.stopPropagation()
+            }}
+            ref={(ref) => {
+              ref?.addEventListener("touchend", (e) => e.preventDefault())
+            }}
+          >
             <SelectRoot.Viewport
               onScroll={(e) => {
                 if (!getMoreOptions) return
