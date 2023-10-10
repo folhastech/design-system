@@ -1,13 +1,13 @@
 {
   "name": "@folhastech/design-system",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Componentes react do design system",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
     "build-storybook": "storybook build",
-    "storybook": "storybook dev -p 6006"
+    "stories": "storybook dev -p 6006"
   },
   "author": "FlavioZanoni",
   "license": "ISC",
@@ -29,12 +29,14 @@
     "@storybook/testing-library": "^0.2.1",
     "@types/react": "^17.0.66",
     "@types/react-dom": "^18.2.8",
+    "@vitejs/plugin-react": "^4.0.4",
     "@vitejs/plugin-react-swc": "^3.4.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.39.0",
     "eslint-plugin-storybook": "^0.6.14",
     "postcss": "^8.4.30",
-    "prettier": "^2.8.7",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.2.5",
     "prop-types": "^15.8.1",
     "rollup": "^3.29.3",
     "rollup-plugin-dts": "^6.0.2",
@@ -46,8 +48,8 @@
     "tailwindcss-radix": "^2.8.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
-    "vite-plugin-dts": "^3.6.0",
-    "@vitejs/plugin-react": "^4.0.4"
+    "vite-plugin-dts": "^3.6.0"
+    
   },
   "peerDependencies": {
     "date-fns": "^2.30.0",
