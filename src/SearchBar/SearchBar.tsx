@@ -1,7 +1,9 @@
 import { debounce } from "lodash"
 import React, { useEffect } from "react"
+import { useForm } from "react-hook-form"
 import { Drawer } from "../Drawer"
 import { Icon } from "../Icon"
+import { TextField } from "../inputFields/TextField"
 
 type DrawerPops = {
   title: string
@@ -14,33 +16,33 @@ type Props = {
   filterButton?: DrawerPops
   addButton?: DrawerPops
   setQuery: React.Dispatch<React.SetStateAction<string>>
+  placeholder?: string
 }
 
 export const SearchBar: React.FC<Props> = React.forwardRef<
   HTMLDivElement,
   Props
->(({ filterButton, addButton, setQuery }, ref) => {
-  const [search, setSearch] = React.useState("")
+>(({ filterButton, addButton, setQuery, placeholder }, ref) => {
+  const { control, register, watch } = useForm()
 
   useEffect(() => {
-    const debounced = debounce(() => setQuery(search), 500)
+    const debounced = debounce(() => setQuery(watch("search")), 500)
     debounced()
     return () => {
       debounced.cancel()
     }
-  }, [search])
+  }, [watch("search")])
 
   return (
     <div className="flex w-full flex-row items-center justify-between py-4">
-      <div className="flex w-full items-center gap-2 text-primary-0">
-        <Icon name="search" className={"text-primary-0"} />
-        <input
-          onChange={(e) => setSearch(e.target.value)}
-          value={search}
-          className="w-full rounded-md  text-gray-600 outline-none"
-          type="text"
-        />
-      </div>
+      <TextField
+        type="text"
+        {...register("search")}
+        placeholder={placeholder}
+        control={control}
+        icon="search"
+      />
+
       <div className="flex gap-6 text-primary-0">
         {filterButton && (
           <Drawer

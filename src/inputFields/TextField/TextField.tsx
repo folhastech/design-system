@@ -12,7 +12,7 @@ import { Icon } from "../../Icon"
 export type Props<T extends FieldValues> = {
   label?: string
   type?: string
-  placeholder: string
+  placeholder?: string
   name: Path<T>
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   className?: string
