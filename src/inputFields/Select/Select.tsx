@@ -150,9 +150,10 @@ export const Select = React.forwardRef(
           </SelectRoot.Trigger>
           <SelectRoot.Content
             className="w-full"
-            ref={(ref) =>
+            ref={(ref) => {
+              ref?.addEventListener("touchstart", (e) => e.preventDefault())
               ref?.addEventListener("touchend", (e) => e.preventDefault())
-            }
+            }}
           >
             <SelectRoot.Viewport
               onScroll={(e) => {
