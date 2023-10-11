@@ -1,7 +1,67 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Drawer } from "./Drawer"
-import { Select } from "./inputFields/Select"
+import { Autocomplete } from "./inputFields/Autocomplete"
+
+const opt = {
+  content: [
+    {
+      id: 36,
+      updatedAt: "2023-08-28 15:06:30",
+      nome: "Talhão Cascavel",
+      longitude: -53.4528,
+      latitude: -24.9651,
+      areaTotal: 50,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+    {
+      id: 37,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+  ],
+  pageable: {
+    sort: {
+      empty: false,
+      sorted: true,
+      unsorted: false,
+    },
+    offset: 0,
+    pageNumber: 0,
+    pageSize: 10,
+    paged: true,
+    unpaged: false,
+  },
+  totalPages: 1,
+  totalElements: 2,
+  last: true,
+  size: 10,
+  number: 0,
+  sort: {
+    empty: false,
+    sorted: true,
+    unsorted: false,
+  },
+  numberOfElements: 2,
+  first: true,
+  empty: false,
+}
 
 function App() {
   const { register, control } = useForm()
@@ -18,14 +78,14 @@ function App() {
         open={open}
         setOpen={setOpen}
       >
-        <Select
-          optionsList={[
-            { value: "1", label: "One" },
-            { value: "2", label: "Two" },
-            { value: "3", label: "Three" },
-          ]}
-          {...register("select")}
+        <Autocomplete
           control={control}
+          {...register(`test`)}
+          placeholder="Selecione um produto"
+          options={{
+            pages: [opt],
+            pageParams: [],
+          }}
         />
       </Drawer>
     </div>

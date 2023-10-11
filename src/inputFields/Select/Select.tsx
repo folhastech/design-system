@@ -10,6 +10,7 @@ import {
   useController,
 } from "react-hook-form"
 import { Icon } from "../../Icon"
+import { OptType, normalizeOptTypeToDefType } from "../SelectUtil"
 import { SelectItem } from "./SelectItem"
 import { DefType, Pagination } from "./types"
 
@@ -27,20 +28,6 @@ type Props<T extends FieldValues> = {
   disabled?: boolean
   getMoreOptions?: () => void
   getOptionLabel?: (value: number | string) => string
-}
-
-type OptType = {
-  label: string
-  value: string
-  disabled?: boolean
-}
-
-function normalizeOptTypeToDefType(defType: DefType): OptType {
-  return {
-    label: defType.nome,
-    value: defType.id.toString(),
-    disabled: !defType.ativo,
-  }
 }
 
 /**
@@ -106,7 +93,6 @@ export const Select = React.forwardRef(
     const {
       field: { onChange, onBlur, value },
       fieldState: { invalid },
-      formState: { errors },
     } = useController({ name, control, rules })
 
     useEffect(() => {
