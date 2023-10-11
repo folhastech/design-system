@@ -35,6 +35,126 @@ const opt = {
         ativo: true,
       },
     },
+    {
+      id: 44,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+    {
+      id: 43,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+    {
+      id: 42,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+    {
+      id: 41,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+    {
+      id: 40,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+    {
+      id: 39,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+    {
+      id: 38,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
+    {
+      id: 38,
+      updatedAt: "2023-09-20 10:29:00",
+      nome: "talhao Fag",
+      longitude: -53.3881,
+      latitude: -25.0525,
+      areaTotal: 450000,
+      ativo: true,
+      empresa: {
+        id: 4,
+        updatedAt: null,
+        nome: "Gallon",
+        ativo: true,
+      },
+    },
   ],
   pageable: {
     sort: {
@@ -49,7 +169,7 @@ const opt = {
     unpaged: false,
   },
   totalPages: 1,
-  totalElements: 2,
+  totalElements: 10,
   last: true,
   size: 10,
   number: 0,
@@ -58,7 +178,7 @@ const opt = {
     sorted: true,
     unsorted: false,
   },
-  numberOfElements: 2,
+  numberOfElements: 10,
   first: true,
   empty: false,
 }
@@ -66,6 +186,7 @@ const opt = {
 function App() {
   const { register, control } = useForm()
   const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
   return (
     <div>
       <Drawer
@@ -82,6 +203,8 @@ function App() {
           control={control}
           {...register(`test`)}
           placeholder="Selecione um produto"
+          isLoading={loading}
+          getMoreOptions={() => setLoading(true)}
           options={{
             pages: [opt],
             pageParams: [],

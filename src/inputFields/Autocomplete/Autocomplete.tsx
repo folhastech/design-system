@@ -4,6 +4,8 @@ import clsx from "clsx"
 import { DefType, Pagination } from "inputFields/Select/types"
 import { debounce } from "lodash"
 import React, { useEffect, useState } from "react"
+import { Icon } from "../../Icon"
+
 import {
   Control,
   FieldValues,
@@ -57,7 +59,7 @@ export const Autocomplete = React.forwardRef(
 
     useEffect(() => {
       if (!filter) return
-      const debounced = debounce(() => filter(query), 500)
+      const debounced = debounce(() => filter(query), 200)
       debounced()
       return () => {
         debounced.cancel()
@@ -94,7 +96,7 @@ export const Autocomplete = React.forwardRef(
           />
           <Combobox.Options
             onScroll={(e) => {
-              if (!getMoreOptions) return
+              if (!getMoreOptions || isLoading) return
               if (
                 e.currentTarget.scrollTop + e.currentTarget.clientHeight >=
                 e.currentTarget.scrollHeight
@@ -103,21 +105,9 @@ export const Autocomplete = React.forwardRef(
               }
             }}
             className={
-              " border border-gray-30 rounded-md shadow-md mt-[-20px] "
+              "border border-gray-30 rounded-md shadow-md mt-[-20px] max-h-[200px] overflow-y-auto"
             }
           >
-            {isLoading && (
-              <Combobox.Option
-                value={"disabled"}
-                className="flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none"
-                disabled
-              >
-                <div className="flex w-full justify-center">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
-                </div>
-              </Combobox.Option>
-            )}
-
             {opt.map((item) => {
               if (item.disabled) return
 
@@ -133,6 +123,20 @@ export const Autocomplete = React.forwardRef(
                 </Combobox.Option>
               )
             })}
+
+            {isLoading && (
+              <Combobox.Option
+                value={"load"}
+                className={
+                  "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none"
+                }
+                disabled
+              >
+                <div className="w-full flex justify-center items-center animate-spin">
+                  <Icon name={"progress_activity"} />
+                </div>
+              </Combobox.Option>
+            )}
           </Combobox.Options>
         </Combobox>
       </div>
