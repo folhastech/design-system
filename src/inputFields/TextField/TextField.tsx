@@ -114,7 +114,6 @@ export const TextField = React.forwardRef(
             <Icon
               onClick={() => {
                 if (!ownRef) return
-                ownRef.current?.focus()
                 ownRef.current?.setAttribute(
                   "type",
                   ownRef.current?.getAttribute("type") === "password"
@@ -125,7 +124,7 @@ export const TextField = React.forwardRef(
                 setIconName(
                   ownRef.current?.getAttribute("type") === "password"
                     ? "visibility"
-                    : "visibility_off"
+                    : "visibilit  y_off"
                 )
               }}
               name={iconName || "visibility"}

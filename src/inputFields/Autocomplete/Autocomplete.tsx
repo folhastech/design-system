@@ -11,7 +11,6 @@ import {
   RegisterOptions,
   useController,
 } from "react-hook-form"
-import Skeleton from "react-loading-skeleton"
 import { OptType, normalizeOptTypeToDefType } from "../SelectUtil"
 
 type Props<T extends FieldValues> = {
@@ -76,8 +75,6 @@ export const Autocomplete = React.forwardRef(
       setOptionLabel(getOptionLabel(value))
     }, [value])
 
-    console.log("valur", value)
-
     return (
       <div className="flex flex-col gap-2">
         {label && <label className="text-sm text-gray-10">{label}</label>}
@@ -105,20 +102,37 @@ export const Autocomplete = React.forwardRef(
                 getMoreOptions()
               }
             }}
+            className={
+              " border border-gray-30 rounded-md shadow-md mt-[-20px] "
+            }
           >
-            {isLoading && <Skeleton height={20} width={80} count={4} />}
-
-            {opt.map((item) => (
+            {isLoading && (
               <Combobox.Option
-                key={item.value}
-                value={item.value}
-                className={
-                  "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none"
-                }
+                value={"disabled"}
+                className="flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none"
+                disabled
               >
-                {item.label}
+                <div className="flex w-full justify-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
+                </div>
               </Combobox.Option>
-            ))}
+            )}
+
+            {opt.map((item) => {
+              if (item.disabled) return
+
+              return (
+                <Combobox.Option
+                  key={item.value}
+                  value={item.value}
+                  className={
+                    "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none"
+                  }
+                >
+                  {item.label}
+                </Combobox.Option>
+              )
+            })}
           </Combobox.Options>
         </Combobox>
       </div>
