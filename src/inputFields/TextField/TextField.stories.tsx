@@ -15,6 +15,7 @@ export default {
   args: {
     placeholder: "Digite",
     icon: "search",
+    type: "text",
   },
 } as Meta
 
