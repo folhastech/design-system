@@ -24,6 +24,7 @@ export type Props<T extends FieldValues> = {
   disabled?: boolean
   minHour?: string
   icon?: string
+  pattern?: string
 }
 
 export const TextField = React.forwardRef(
@@ -42,6 +43,7 @@ export const TextField = React.forwardRef(
       disabled,
       minHour,
       icon,
+      pattern,
     }: Props<T>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
@@ -65,6 +67,7 @@ export const TextField = React.forwardRef(
                 ownRef.current?.focus()
               }}
               name={icon}
+              className="cursor-pointer text-primary-0 select-none"
             />
           )}
 
@@ -108,6 +111,7 @@ export const TextField = React.forwardRef(
             autoComplete={autoComplete}
             onClick={onClick}
             disabled={disabled}
+            pattern={pattern}
           />
 
           {type === "password" && (
@@ -124,11 +128,11 @@ export const TextField = React.forwardRef(
                 setIconName(
                   ownRef.current?.getAttribute("type") === "password"
                     ? "visibility"
-                    : "visibilit  y_off"
+                    : "visibility_off"
                 )
               }}
               name={iconName || "visibility"}
-              className="cursor-pointer text-primary-0"
+              className="cursor-pointer text-primary-0 select-none"
             />
           )}
         </div>
