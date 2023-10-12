@@ -49,7 +49,7 @@ export const Drawer: React.FC<DrawerProps> = React.forwardRef<
             if (isMobile) setHeight(50)
             setOpen(false)
           }}
-          className="fixed inset-0 bottom-0 bg-black/30 blur"
+          className="backdrop-blur-[2px] fixed inset-0 bottom-0 bg-black/30"
         />
         <DialogRoot.Content
           forceMount
@@ -57,7 +57,7 @@ export const Drawer: React.FC<DrawerProps> = React.forwardRef<
             height: isMobile ? height : "",
           }}
           className={clsx(
-            "fixed max-h-screen bottom-0 flex w-full flex-col gap-2 bg-white rounded-t-3xl lg:h-[595px] lg:max-h-[595px] lg:w-[800px] lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-xl lg:p-8 lg:shadow p-6",
+            "fixed max-h-[calc(100vh-20px)] bottom-0 flex w-full flex-col gap-2 p-6 pt-0 lg:pt-6 bg-white rounded-t-3xl lg:h-[595px] lg:max-h-[595px] lg:w-[800px] lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-xl lg:p-8 lg:shadow",
             "transition-all duration-500 z-50",
             className
           )}
