@@ -56,9 +56,19 @@ export const TextField = React.forwardRef(
     } = useController({ name, control, rules })
 
     useEffect(() => {
-      if (!ownRef) return
-      ownRef.current?.removeAttribute("autofocus")
-      ownRef.current?.blur()
+      if (!ownRef.current) return
+      // Disable the input when the component mounts
+      ownRef.current.disabled = true
+
+      const timeout = setTimeout(() => {
+        if (!ownRef.current) return
+        // Enable the input after a delay
+        ownRef.current.disabled = false
+      }, 1000) // Adjust the delay as needed
+
+      return () => {
+        clearTimeout(timeout) // Clear the timeout if the component unmounts
+      }
     }, [])
 
     return (
