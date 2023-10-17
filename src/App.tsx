@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Drawer } from "./Drawer"
 import { Autocomplete } from "./inputFields/Autocomplete"
+import { TextField } from "./inputFields/TextField"
 
 const opt = {
   content: [
@@ -199,6 +200,13 @@ function App() {
         open={open}
         setOpen={setOpen}
       >
+        <TextField
+          icon="search"
+          placeholder="Search"
+          {...register(`search`)}
+          control={control}
+        />
+
         <Autocomplete
           control={control}
           {...register(`test`)}

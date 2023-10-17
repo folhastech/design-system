@@ -74,6 +74,7 @@ export const TextField = React.forwardRef(
           <input
             readOnly={readOnly}
             ref={ownRef}
+            autoFocus={false}
             className={clsx(
               "apearance-none  w-full focus:outline-none",
               {

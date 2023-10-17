@@ -34,13 +34,14 @@ export const SearchBar: React.FC<Props> = React.forwardRef<
   }, [watch("search")])
 
   return (
-    <div className="flex w-full flex-row items-center justify-between py-4">
+    <div className="flex flex-row items-center justify-between py-4 w-full">
       <TextField
         type="text"
         {...register("search")}
         placeholder={placeholder}
         control={control}
         icon="search"
+        className="w-full"
       />
 
       <div className="flex gap-6 text-primary-0">

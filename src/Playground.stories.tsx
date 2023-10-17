@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Drawer } from "./Drawer"
 import { Select } from "./inputFields/Select"
+import { TextField } from "./inputFields/TextField"
 
 const Template: StoryFn = (args) => {
   const { control, register } = useForm()
@@ -17,6 +18,12 @@ const Template: StoryFn = (args) => {
       }}
       title={"Login"}
     >
+      <TextField
+        icon="search"
+        placeholder="Search"
+        {...register(`search`)}
+        control={control}
+      />
       <Select
         {...args}
         control={control}
