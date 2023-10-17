@@ -1,5 +1,6 @@
 export * from "./Button"
 export * from "./Drawer"
+export * from "./SearchBar"
 export * from "./StepForm"
 export * from "./hooks"
 export * from "./inputFields"
