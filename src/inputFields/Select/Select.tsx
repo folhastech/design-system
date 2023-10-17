@@ -142,6 +142,7 @@ export const Select = React.forwardRef(
             </SelectRoot.Icon>
           </SelectRoot.Trigger>
           <SelectRoot.Content
+            position="popper"
             className="w-full"
             // preventing autoclose on select or click outside, this is a bug from radix
             onPointerDownOutside={(e) => {
@@ -161,7 +162,7 @@ export const Select = React.forwardRef(
                   getMoreOptions()
                 }
               }}
-              className="z-40 m-2 mr-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width"
+              className="z-40 m-2 mr-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width max-w-[300px] lg:max-w-[800px] overflow-y-auto"
             >
               {opt?.map((item) => {
                 return (

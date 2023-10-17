@@ -25,6 +25,7 @@ export type Props<T extends FieldValues> = {
   minHour?: string
   icon?: string
   pattern?: string
+  showBorder?: boolean
 }
 
 export const TextField = React.forwardRef(
@@ -44,6 +45,7 @@ export const TextField = React.forwardRef(
       minHour,
       icon,
       pattern,
+      showBorder = true,
     }: Props<T>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
@@ -77,7 +79,12 @@ export const TextField = React.forwardRef(
       <div className={clsx("flex flex-col", className)}>
         {label && <label>{label}</label>}
 
-        <div className="flex flex-row gap-2 items-center mb-2 h-[45px] w-full border-b-2 border-gray-30 focus:outline-none">
+        <div
+          className={clsx(
+            "flex flex-row gap-2 items-center mb-2 h-[45px] w-full focus:outline-none",
+            showBorder ? "border-b-2 border-gray-30" : ""
+          )}
+        >
           {icon && (
             <Icon
               onClick={() => {

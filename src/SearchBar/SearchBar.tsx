@@ -42,6 +42,7 @@ export const SearchBar: React.FC<Props> = React.forwardRef<
         control={control}
         icon="search"
         className="w-full"
+        showBorder={false}
       />
 
       <div className="flex gap-6 text-primary-0">

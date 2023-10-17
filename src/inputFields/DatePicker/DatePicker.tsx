@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { format, isValid, parse, setDefaultOptions } from "date-fns"
 import { ptBR } from "date-fns/locale"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { DayPicker } from "react-day-picker"
 import {
   Control,
@@ -36,7 +36,7 @@ export const DatePicker = React.forwardRef(
   ) => {
     const [open, setOpen] = useState(false)
     const [inputValue, setInputValue] = useState<any>("")
-
+    const ownRef = useRef<HTMLInputElement>(null)
     const {
       field: { onChange, onBlur, value },
       fieldState: { invalid },
@@ -69,6 +69,23 @@ export const DatePicker = React.forwardRef(
       }
     }
 
+    useEffect(() => {
+      if (!ownRef.current) return
+      // Disable the input when the component mounts
+      ownRef.current.disabled = true
+      ownRef.current?.blur()
+
+      const timeout = setTimeout(() => {
+        if (!ownRef.current) return
+        // Enable the input after a delay
+        ownRef.current.disabled = false
+      }, 100)
+
+      return () => {
+        clearTimeout(timeout) // Clear the timeout if the component unmounts
+      }
+    }, [])
+
     return (
       <div className={className}>
         <div className="flex flex-col">
@@ -84,7 +101,7 @@ export const DatePicker = React.forwardRef(
               className="absolute mb-2 text-gray-10 "
             />
             <input
-              ref={ref}
+              ref={ownRef}
               className={clsx(
                 "apearance-none mb-2 h-[45px] w-full border-b-2 border-gray-30 text-center focus:outline-none",
                 {

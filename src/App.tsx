@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Drawer } from "./Drawer"
+import { Select } from "./inputFields"
 import { Autocomplete } from "./inputFields/Autocomplete"
 import { TextField } from "./inputFields/TextField"
 
@@ -205,6 +206,19 @@ function App() {
           placeholder="Search"
           {...register(`search`)}
           control={control}
+        />
+
+        <Select
+          control={control}
+          {...register(`test`)}
+          placeholder="Selecione um produto"
+          isLoading={loading}
+          getMoreOptions={() => setLoading(true)}
+          optionsList={[
+            { value: "Option 1", label: "Option 1" },
+            { value: "Option 2", label: "Option 2" },
+            { value: "Option 3", label: "Option 3" },
+          ]}
         />
 
         <Autocomplete
