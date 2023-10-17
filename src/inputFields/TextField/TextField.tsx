@@ -59,7 +59,6 @@ export const TextField = React.forwardRef(
     useEffect(() => {
       if (!ownRef.current) return
       // Disable the input when the component mounts
-      ownRef.current.disabled = true
       ownRef.current?.blur()
     }, [])
 
