@@ -60,12 +60,11 @@ export const TextField = React.forwardRef(
       // Disable the input when the component mounts
       ownRef.current.disabled = true
       ownRef.current?.removeAttribute("autofocus")
-      ownRef.current?.blur()
       const timeout = setTimeout(() => {
         if (!ownRef.current) return
         // Enable the input after a delay
         ownRef.current.disabled = false
-      }, 500) // Adjust the delay as needed
+      }, 100) // Adjust the delay as needed
 
       return () => {
         clearTimeout(timeout) // Clear the timeout if the component unmounts
