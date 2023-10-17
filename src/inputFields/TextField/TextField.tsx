@@ -58,6 +58,7 @@ export const TextField = React.forwardRef(
     useEffect(() => {
       if (!ownRef) return
       ownRef.current?.removeAttribute("autofocus")
+      ownRef.current?.blur()
     }, [])
 
     return (
