@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import {
   Control,
   FieldValues,
@@ -55,6 +55,11 @@ export const TextField = React.forwardRef(
       formState: { errors },
     } = useController({ name, control, rules })
 
+    useEffect(() => {
+      if (!ownRef) return
+      ownRef.current?.removeAttribute("autofocus")
+    }, [])
+
     return (
       <div className={clsx("flex flex-col", className)}>
         {label && <label>{label}</label>}
@@ -74,7 +79,7 @@ export const TextField = React.forwardRef(
           <input
             readOnly={readOnly}
             ref={ownRef}
-            autoFocus={false}
+            autoFocus
             className={clsx(
               "apearance-none  w-full focus:outline-none",
               {
