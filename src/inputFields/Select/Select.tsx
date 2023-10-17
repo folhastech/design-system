@@ -136,7 +136,13 @@ export const Select = React.forwardRef(
               e.stopPropagation()
             }}
           >
-            <SelectRoot.Value>{optionLabel || placeholder}</SelectRoot.Value>
+            <SelectRoot.Value>
+              {optionLabel
+                ? optionLabel !== ""
+                  ? optionLabel
+                  : placeholder
+                : placeholder}
+            </SelectRoot.Value>
             <SelectRoot.Icon>
               <Icon name="expand_more" />
             </SelectRoot.Icon>
@@ -162,7 +168,7 @@ export const Select = React.forwardRef(
                   getMoreOptions()
                 }
               }}
-              className="z-40 m-2 mr-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width max-w-[300px] lg:max-w-[800px] overflow-y-auto"
+              className="z-40 m-2 mr-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width max-w-[300px] lg:max-w-[500px] overflow-y-auto"
             >
               {opt?.map((item) => {
                 return (
