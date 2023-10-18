@@ -14,7 +14,6 @@ export default {
   component: Template,
   args: {
     placeholder: "Digite",
-    icon: "search",
     type: "text",
   },
 } as Meta

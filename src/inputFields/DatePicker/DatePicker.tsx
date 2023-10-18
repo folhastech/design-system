@@ -103,10 +103,11 @@ export const DatePicker = React.forwardRef(
             <input
               ref={ownRef}
               className={clsx(
-                "apearance-none mb-2 h-[45px] w-full border-b-2 border-gray-30 text-center focus:outline-none",
+                "apearance-none mb-2 h-[45px] w-full border-b-2 text-center focus:outline-none",
+                invalid
+                  ? "border-error-10 text-error-10 placeholder:text-error-10"
+                  : "border-gray-30",
                 {
-                  "border-error-10 text-error-10 placeholder:text-error-10":
-                    invalid,
                   "placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10":
                     placeholder,
                 },

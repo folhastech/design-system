@@ -126,10 +126,8 @@ export const Select = React.forwardRef(
           <SelectRoot.Trigger
             onBlur={onBlur}
             className={clsx(
-              "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 pr-2 text-lg text-gray-10 focus:outline-none",
-              {
-                "border-error-10 text-error-10": invalid,
-              },
+              "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 pr-2 text-lg text-gray-10 focus:outline-none",
+              invalid ? "border-error-10 text-error-10 " : "border-gray-30",
               className
             )}
             // preventing autoclose on select or click outside, this is a bug from radix

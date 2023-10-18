@@ -82,7 +82,11 @@ export const TextField = React.forwardRef(
         <div
           className={clsx(
             "flex flex-row gap-2 items-center mb-2 h-[45px] w-full focus:outline-none",
-            showBorder ? "border-b-2 border-gray-30" : ""
+            showBorder &&
+              `border-b ${invalid ? "border-error-10" : "border-gray-30"}`,
+            {
+              " text-error-10 placeholder:text-error-10": invalid,
+            }
           )}
         >
           {icon && (
@@ -100,12 +104,10 @@ export const TextField = React.forwardRef(
             readOnly={readOnly}
             ref={ownRef}
             className={clsx(
-              "apearance-none  w-full focus:outline-none",
+              "apearance-none w-full focus:outline-none",
               {
                 "placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10":
                   placeholder,
-                "border-error-10 text-error-10 placeholder:text-error-10":
-                  invalid,
               },
               {
                 "border-gray-30 text-gray-30 placeholder:text-gray-30":
