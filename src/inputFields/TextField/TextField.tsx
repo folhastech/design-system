@@ -105,10 +105,12 @@ export const TextField = React.forwardRef(
             ref={ownRef}
             className={clsx(
               "apearance-none w-full focus:outline-none",
-              {
-                "placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10":
-                  placeholder,
-              },
+              placeholder &&
+                `placeholder:mb-4 placeholder:text-lg ${
+                  invalid
+                    ? "placeholder:text-error-10"
+                    : "placeholder:text-gray-10"
+                } `,
               {
                 "border-gray-30 text-gray-30 placeholder:text-gray-30":
                   disabled,

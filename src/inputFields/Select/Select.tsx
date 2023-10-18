@@ -138,7 +138,10 @@ export const Select = React.forwardRef(
               e.stopPropagation()
             }}
           >
-            <SelectRoot.Value placeholder={placeholder}>
+            <SelectRoot.Value
+              className={`${optionLabel ? "text-primary-0" : "text-gray-10"}`}
+              placeholder={placeholder}
+            >
               {optionLabel ?? placeholder}
             </SelectRoot.Value>
             <SelectRoot.Icon>
