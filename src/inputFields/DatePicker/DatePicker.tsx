@@ -105,7 +105,7 @@ export const DatePicker = React.forwardRef(
               className={clsx(
                 "apearance-none mb-2 h-[45px] w-full border-b-2 border-gray-30 text-center focus:outline-none",
                 {
-                  "border-red-500 text-red-500 placeholder:text-red-500":
+                  "border-error-10 text-error-10 placeholder:text-error-10":
                     invalid,
                   "placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10":
                     placeholder,
@@ -125,7 +125,7 @@ export const DatePicker = React.forwardRef(
 
           <div>
             {errors && (
-              <span className="text-sm text-red-500">
+              <span className="text-sm text-error-10">
                 {errors[name]?.message as string}
               </span>
             )}

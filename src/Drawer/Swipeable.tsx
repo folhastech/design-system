@@ -105,7 +105,7 @@ export const Swipeable: React.FC<Props> = ({
       {...handlers}
       className="flex h-9 cursor-grab items-center justify-center p-4 "
     >
-      <div className="h-1 w-8 rounded-full bg-gray-25"></div>
+      <div className="h-1 w-8 rounded-full bg-gray-10"></div>
     </div>
   )
 }

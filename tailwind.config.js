@@ -15,11 +15,13 @@ module.exports = {
           70: "#F3FFFB",
         },
         gray: {
-          0: "#AEAEAE",
-          10: "#475467",
-          20: "#667085",
-          25: "#727076",
-          30: "#D9D9D9",
+          0: "#475467",
+          10: "#AEAEAE",
+          20: "#D9D9D9",
+          30: "#EEEDED",
+        },
+        error: {
+          10: "#EB4141",
         },
         almostWhite: {
           0: "#FAFFFD",

@@ -10,6 +10,7 @@ import {
   useController,
 } from "react-hook-form"
 import { Icon } from "../../Icon"
+import { useSize } from "../../hooks/useSize"
 import { OptType, normalizeOptTypeToDefType } from "../SelectUtil"
 import { SelectItem } from "./SelectItem"
 import { DefType, Pagination } from "./types"
@@ -89,6 +90,8 @@ export const Select = React.forwardRef(
   ) => {
     const [opt, setOpt] = useState<OptType[]>([])
     const [optionLabel, setOptionLabel] = useState<string | undefined>()
+    const size = useSize()
+    const isMobile = size === "sm" || size === "md"
 
     const {
       field: { onChange, onBlur, value },
@@ -101,6 +104,7 @@ export const Select = React.forwardRef(
     }, [value])
 
     useEffect(() => {
+      console.log("her")
       if (optionsList) {
         setOpt(optionsList)
       } else {
@@ -124,7 +128,7 @@ export const Select = React.forwardRef(
             className={clsx(
               "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 pr-2 text-lg text-gray-10 focus:outline-none",
               {
-                "border-red-500 text-red-500": invalid,
+                "border-error-10 text-error-10": invalid,
               },
               className
             )}
@@ -136,19 +140,15 @@ export const Select = React.forwardRef(
               e.stopPropagation()
             }}
           >
-            <SelectRoot.Value>
-              {optionLabel
-                ? optionLabel !== ""
-                  ? optionLabel
-                  : placeholder
-                : placeholder}
+            <SelectRoot.Value placeholder={placeholder}>
+              {optionLabel ?? placeholder}
             </SelectRoot.Value>
             <SelectRoot.Icon>
               <Icon name="expand_more" />
             </SelectRoot.Icon>
           </SelectRoot.Trigger>
           <SelectRoot.Content
-            position="popper"
+            position={isMobile ? "item-aligned" : "popper"}
             className="w-full"
             // preventing autoclose on select or click outside, this is a bug from radix
             onPointerDownOutside={(e) => {

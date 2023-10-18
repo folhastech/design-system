@@ -102,9 +102,10 @@ export const TextField = React.forwardRef(
             className={clsx(
               "apearance-none  w-full focus:outline-none",
               {
-                "border-red-500 text-red-500 placeholder:text-red-500": invalid,
                 "placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10":
                   placeholder,
+                "border-error-10 text-error-10 placeholder:text-error-10":
+                  invalid,
               },
               {
                 "border-gray-30 text-gray-30 placeholder:text-gray-30":
@@ -164,7 +165,7 @@ export const TextField = React.forwardRef(
 
         <div>
           {errors && (
-            <span className="text-sm text-red-500">
+            <span className="text-sm text-error-10">
               {errors[name]?.message as string}
             </span>
           )}
