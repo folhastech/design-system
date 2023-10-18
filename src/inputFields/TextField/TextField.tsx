@@ -51,7 +51,8 @@ export const TextField = React.forwardRef(
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     const ownRef = useRef<HTMLInputElement>(null)
-    const [iconName, setIconName] = React.useState<string | undefined>("")
+    const [iconName, setIconName] = React.useState("visibility")
+    const [inputType, setInputType] = React.useState<string | undefined>(type)
     const {
       field: { onChange, onBlur, value },
       fieldState: { invalid },
@@ -117,7 +118,7 @@ export const TextField = React.forwardRef(
                   disabled,
               }
             )}
-            type={type}
+            type={inputType}
             placeholder={placeholder}
             value={value || ""}
             onChange={(e) => {
@@ -148,25 +149,17 @@ export const TextField = React.forwardRef(
           {type === "password" && (
             <Button
               variant="text"
-              onClick={(e) => {
-                e.preventDefault()
-                if (!ownRef) return
-                ownRef.current?.setAttribute(
-                  "type",
-                  ownRef.current?.getAttribute("type") === "password"
-                    ? "text"
-                    : "password"
-                )
-
+              onClick={() => {
                 setIconName(
-                  ownRef.current?.getAttribute("type") === "password"
+                  iconName === "visibility_off"
                     ? "visibility"
                     : "visibility_off"
                 )
+                setInputType(inputType === "password" ? "text" : "password")
               }}
             >
               <Icon
-                name={iconName || "visibility"}
+                name={iconName}
                 className="cursor-pointer text-primary-0 select-none"
               />
             </Button>
