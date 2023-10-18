@@ -7,6 +7,7 @@ import {
   RegisterOptions,
   useController,
 } from "react-hook-form"
+import { Button } from "../../Button"
 import { Icon } from "../../Icon"
 
 export type Props<T extends FieldValues> = {
@@ -145,8 +146,10 @@ export const TextField = React.forwardRef(
           />
 
           {type === "password" && (
-            <Icon
-              onClick={() => {
+            <Button
+              variant="text"
+              onClick={(e) => {
+                e.preventDefault()
                 if (!ownRef) return
                 ownRef.current?.setAttribute(
                   "type",
@@ -161,9 +164,12 @@ export const TextField = React.forwardRef(
                     : "visibility_off"
                 )
               }}
-              name={iconName || "visibility"}
-              className="cursor-pointer text-primary-0 select-none"
-            />
+            >
+              <Icon
+                name={iconName || "visibility"}
+                className="cursor-pointer text-primary-0 select-none"
+              />
+            </Button>
           )}
         </div>
 

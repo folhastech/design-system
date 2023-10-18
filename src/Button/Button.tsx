@@ -1,9 +1,9 @@
 import clsx from "clsx"
-import React from "react"
+import React, { SyntheticEvent } from "react"
 import { Icon } from "../Icon"
 
 export type ButtonProps = {
-  onClick?: () => void
+  onClick?: (e: SyntheticEvent) => void
   variant?: "primary" | "text" | "outlined"
   className?: string
   type?: "button" | "submit" | "reset"
