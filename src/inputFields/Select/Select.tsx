@@ -148,7 +148,7 @@ export const Select = React.forwardRef(
             </SelectRoot.Icon>
           </SelectRoot.Trigger>
           <SelectRoot.Content
-            position={isMobile ? "item-aligned" : "popper"}
+            position={!isMobile ? "popper" : undefined}
             className="w-full"
             // preventing autoclose on select or click outside, this is a bug from radix
             onPointerDownOutside={(e) => {
