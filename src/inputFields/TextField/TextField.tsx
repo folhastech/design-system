@@ -69,7 +69,7 @@ export const TextField = React.forwardRef(
       const timeout = setTimeout(() => {
         if (!ownRef.current) return
         // Enable the input after a delay
-        ownRef.current.disabled = false
+        if (!disabled) ownRef.current.disabled = false
       }, 100)
 
       return () => {
