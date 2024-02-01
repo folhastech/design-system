@@ -73,9 +73,9 @@ export const Drawer: React.FC<DrawerProps> = React.forwardRef<
 
           <div
             ref={contentRef}
-            className="flex flex-col gap-6 overflow-y-auto lg:h-[595px]"
+            className="flex flex-col gap-6 overflow-y-auto"
           >
-            <div className="flex w-full items-center justify-between text-primary-0">
+            <div className="flex w-full items-center justify-between text-primary-0 h-full">
               <DialogRoot.Title className="text-3xl font-semibold ">
                 {title}
               </DialogRoot.Title>
