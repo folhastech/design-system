@@ -1,30 +1,26 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { useForm } from "react-hook-form"
-import { Select } from "./Select"
+import { FieldValues, useForm } from "react-hook-form"
+import { Props, Select } from "./Select"
 
-const Template: StoryFn<typeof Select> = (args) => {
+type StoryProps = Omit<Props<FieldValues>, "control" | "register">
+
+const Template: StoryFn<StoryProps> = (args) => {
   const { control, register } = useForm()
-  return (
-    <Select
-      {...args}
-      control={control}
-      {...register("example")}
-      getOptionLabel={(option) => option as string}
-    />
-  )
+  return <Select {...args} control={control} {...register("example")} />
 }
 
 export default {
-  title: "Components/Select",
-  component: Template,
-  args: {
-    placeholder: "Select",
-    optionsList: [
-      { value: "Option 1", label: "Option 1" },
-      { value: "Option 2", label: "Option 2" },
-      { value: "Option 3", label: "Option 3" },
-    ],
-  },
+  title: "Components/inputFields/Select",
+  component: Select,
 } as Meta
 
-export { Template }
+export const Primary = Template.bind({})
+Primary.args = {
+  placeholder: "Select",
+  optionsList: [
+    { value: "Option 1", label: "Option 1" },
+    { value: "Option 2", label: "Option 2" },
+    { value: "Option 3", label: "Option 3" },
+  ],
+  getOptionLabel: (option) => option as string,
+}

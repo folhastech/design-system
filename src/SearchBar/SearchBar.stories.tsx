@@ -1,16 +1,19 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { useState } from "react"
-import { SearchBar } from "./SearchBar"
+import { Props, SearchBar } from "./SearchBar"
 
-const Template: StoryFn = (args) => {
+type StoryProps = Omit<Props, "setQuery">
+
+const Template: StoryFn<StoryProps> = (args) => {
   const [query, setQuery] = useState("")
 
-  return <SearchBar setQuery={setQuery} />
+  return <SearchBar {...args} setQuery={setQuery} />
 }
 
 export default {
   title: "Components/SearchBar",
-  component: Template,
+  component: SearchBar,
 } as Meta
 
-export { Template }
+export const Primary = Template.bind({})
+Primary.args = {}

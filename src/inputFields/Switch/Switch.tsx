@@ -9,7 +9,7 @@ import {
   useController,
 } from "react-hook-form"
 
-type Props<T extends FieldValues> = {
+export type Props<T extends FieldValues> = {
   label?: string
   type?: string
   name: Path<T>

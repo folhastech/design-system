@@ -3,7 +3,7 @@ import React from "react"
 import { Drawer } from "../Drawer/Drawer"
 import { Icon } from "../Icon/Icon"
 
-type StepFormProps = {
+export type StepFormProps = {
   icon: string
   title: string
   done: boolean
@@ -25,7 +25,7 @@ export const StepForm: React.FC<StepFormProps> = ({
       <button onClick={() => setOpen(true)}>
         <div
           className={clsx(
-            "flex items-center justify-between rounded-full border border-primary-60 p-4",
+            "flex items-center justify-between rounded-full border border-primary-60 p-4 gap-4 w-full",
             done ? "bg-primary-60" : "bg-primary-70"
           )}
         >

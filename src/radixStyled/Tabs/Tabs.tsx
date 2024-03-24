@@ -1,7 +1,7 @@
 import * as TabsRoot from "@radix-ui/react-tabs"
 import React from "react"
 
-type Props = {
+export type Props = {
   children: React.ReactNode
   defaultValue: string
   onClick?: () => void

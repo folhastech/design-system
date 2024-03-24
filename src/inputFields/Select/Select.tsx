@@ -15,7 +15,7 @@ import { OptType, normalizeOptTypeToDefType } from "../SelectUtil"
 import { SelectItem } from "./SelectItem"
 import { DefType, Pagination } from "./types"
 
-type Props<T extends FieldValues> = {
+export type Props<T extends FieldValues> = {
   label?: string
   options?: InfiniteData<Pagination<DefType>>
   optionsList?: OptType[]

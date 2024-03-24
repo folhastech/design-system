@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import React from "react"
 
-type IconProps = {
+export type IconProps = {
   name: string
   className?: string
   onClick?: (e: React.SyntheticEvent) => void

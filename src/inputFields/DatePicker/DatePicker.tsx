@@ -15,7 +15,7 @@ import { Popover } from "../../radixStyled/Popover"
 
 setDefaultOptions({ locale: ptBR })
 
-type Props<T extends FieldValues> = {
+export type Props<T extends FieldValues> = {
   label?: string
   type?: string
   placeholder: string

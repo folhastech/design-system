@@ -12,7 +12,7 @@ type DrawerPops = {
   open?: boolean
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }
-type Props = {
+export type Props = {
   filterButton?: DrawerPops
   addButton?: DrawerPops
   setQuery: React.Dispatch<React.SetStateAction<string>>

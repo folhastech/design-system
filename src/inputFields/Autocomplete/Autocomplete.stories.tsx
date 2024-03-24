@@ -1,0 +1,74 @@
+import { Meta, StoryFn } from "@storybook/react"
+import { FieldValues, Path, useForm } from "react-hook-form"
+import { Autocomplete, Props } from "./Autocomplete"
+
+type StoryProps = Omit<Props<FieldValues>, "control" | "onChange" | "name">
+
+const Template: StoryFn<StoryProps> = (args) => {
+  const { control, register } = useForm()
+  const name: Path<FieldValues> = "example"
+  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
+    console.log(e.target.value)
+  return (
+    <Autocomplete {...args} control={control} onChange={onChange} name={name} />
+  )
+}
+
+export default {
+  title: "Components/inputFields/Autocomplete",
+  component: Autocomplete,
+} as Meta
+
+export const Primary = Template.bind({})
+Primary.args = {
+  rules: { required: true },
+  placeholder: "Placeholder",
+  isLoading: false,
+  disabled: false,
+  getMoreOptions: () => {},
+  options: {
+    pages: [
+      {
+        content: [
+          {
+            ativo: true,
+            id: 1,
+            nome: "opt1",
+          },
+          {
+            ativo: true,
+            id: 2,
+            nome: "opt2",
+          },
+        ],
+        empty: false,
+        first: true,
+        last: true,
+        number: 1,
+        numberOfElements: 2,
+        pageable: {
+          offset: 1,
+          pageNumber: 1,
+          pageSize: 1,
+          paged: true,
+          sort: {
+            empty: true,
+            sorted: true,
+            unsorted: true,
+          },
+          unpaged: true,
+        },
+        size: 1,
+        sort: {
+          empty: true,
+          sorted: true,
+          unsorted: true,
+        },
+        totalElements: 1,
+        totalPages: 1,
+      },
+    ],
+    pageParams: [],
+  }, // this comes from the API
+  getOptionLabel: (value) => `Option ${value}`,
+}

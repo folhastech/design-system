@@ -15,7 +15,7 @@ import {
 } from "react-hook-form"
 import { OptType, normalizeOptTypeToDefType } from "../SelectUtil"
 
-type Props<T extends FieldValues> = {
+export type Props<T extends FieldValues> = {
   label?: string
   options?: InfiniteData<Pagination<DefType>>
   name: Path<T>

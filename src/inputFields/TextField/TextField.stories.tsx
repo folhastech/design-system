@@ -1,21 +1,22 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { useForm } from "react-hook-form"
-import { TextField } from "./TextField"
+import { FieldValues, useForm } from "react-hook-form"
+import { Props, TextField } from "./TextField"
 
-const Template: StoryFn = (args) => {
+type StoryProps = Omit<Props<FieldValues>, "control" | "register">
+
+const Template: StoryFn<StoryProps> = (args) => {
   const { control, register } = useForm()
 
-  /* @ts-ignore */
   return <TextField {...args} {...register("example")} control={control} />
 }
 
 export default {
-  title: "Components/TextField",
-  component: Template,
-  args: {
-    placeholder: "Digite",
-    type: "text",
-  },
+  title: "Components/inputFields/TextField",
+  component: TextField,
 } as Meta
 
-export { Template }
+export const Primary = Template.bind({})
+Primary.args = {
+  placeholder: "Type here...",
+  type: "text",
+}

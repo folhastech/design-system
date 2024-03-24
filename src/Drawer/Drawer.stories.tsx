@@ -1,19 +1,14 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { useState } from "react"
-import { Drawer } from "./Drawer"
+import { Drawer, DrawerProps } from "./Drawer"
 
-const Template: StoryFn = (args) => {
+type StoryProps = Omit<DrawerProps, "open" | "setOpen">
+
+const Template: StoryFn<StoryProps> = (args) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   return (
-    <Drawer
-      open={isDrawerOpen}
-      setOpen={setIsDrawerOpen}
-      button={{
-        text: "Abrir",
-      }}
-      {...args}
-    >
+    <Drawer open={isDrawerOpen} setOpen={setIsDrawerOpen} {...args}>
       <h1>Children</h1>
     </Drawer>
   )
@@ -21,11 +16,13 @@ const Template: StoryFn = (args) => {
 
 export default {
   title: "Components/Drawer",
-  component: Template,
-  args: {
-    title: "Titulo",
-    size: "xl",
-  },
+  component: Drawer,
 } as Meta
 
-export { Template }
+export const Primary = Template.bind({})
+Primary.args = {
+  title: "Title",
+  button: {
+    text: "Open",
+  },
+}
