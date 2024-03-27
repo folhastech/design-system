@@ -65,7 +65,7 @@ export type Props<T extends FieldValues> = {
                         return item.id == value
                       })
                     )
-                    .flat()[0]?.nome ?? ""
+                    .flat()[0]?.name ?? ""
                 )
               }}
             />

@@ -1,7 +1,7 @@
 export type DefType = {
-  ativo: boolean
+  active: boolean
   id: number
-  nome: string
+  name: string
 }
 
 export interface Pagination<T> {

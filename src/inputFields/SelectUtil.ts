@@ -8,8 +8,8 @@ export type OptType = {
 
 export function normalizeOptTypeToDefType(defType: DefType): OptType {
   return {
-    label: defType.nome,
+    label: defType.name,
     value: defType.id.toString(),
-    disabled: !defType.ativo,
+    disabled: !defType.active,
   }
 }
