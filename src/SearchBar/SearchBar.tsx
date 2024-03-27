@@ -12,16 +12,16 @@ type DrawerPops = {
   open?: boolean
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }
-export type Props = {
+export type SearchBarProps = {
   filterButton?: DrawerPops
   addButton?: DrawerPops
   setQuery: React.Dispatch<React.SetStateAction<string>>
   placeholder?: string
 }
 
-export const SearchBar: React.FC<Props> = React.forwardRef<
+export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
   HTMLDivElement,
-  Props
+  SearchBarProps
 >(({ filterButton, addButton, setQuery, placeholder }, ref) => {
   const { control, register, watch } = useForm()
 

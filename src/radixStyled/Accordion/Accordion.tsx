@@ -6,7 +6,7 @@ import { Icon } from "../../Icon"
 import { AccordionItem } from "./AccordionItem"
 import { AccordionContent } from "./AccoridonContent"
 
-export type Props = {
+export type AccordionProps = {
   children: React.ReactNode
   headerProps: AccordionRoot.AccordionHeaderProps
   contentProps?: AccordionRoot.AccordionContentProps
@@ -16,7 +16,7 @@ export type Props = {
   className?: string
 }
 
-export const Accordion: React.FC<Props> = ({
+export const Accordion: React.FC<AccordionProps> = ({
   children,
   headerProps,
   contentProps,

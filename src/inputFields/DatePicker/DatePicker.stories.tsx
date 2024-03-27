@@ -1,8 +1,11 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { FieldValues, Path, useForm } from "react-hook-form"
-import { DatePicker, Props } from "./DatePicker"
+import { DatePicker, DatepickerProps } from "./DatePicker"
 
-type StoryProps = Omit<Props<FieldValues>, "control" | "onChange" | "name">
+type StoryProps = Omit<
+  DatepickerProps<FieldValues>,
+  "control" | "onChange" | "name"
+>
 
 const Template: StoryFn<StoryProps> = (args) => {
   const { control } = useForm()

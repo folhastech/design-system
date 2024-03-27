@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { useState } from "react"
-import { Props, SearchBar } from "./SearchBar"
+import { SearchBar, SearchBarProps } from "./SearchBar"
 
-type StoryProps = Omit<Props, "setQuery">
+type StoryProps = Omit<SearchBarProps, "setQuery">
 
 const Template: StoryFn<StoryProps> = (args) => {
   const [query, setQuery] = useState("")

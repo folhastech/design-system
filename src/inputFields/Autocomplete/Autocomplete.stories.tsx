@@ -1,8 +1,11 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { FieldValues, Path, useForm } from "react-hook-form"
-import { Autocomplete, Props } from "./Autocomplete"
+import { Autocomplete, AutocompleteProps } from "./Autocomplete"
 
-type StoryProps = Omit<Props<FieldValues>, "control" | "onChange" | "name">
+type StoryProps = Omit<
+  AutocompleteProps<FieldValues>,
+  "control" | "onChange" | "name"
+>
 
 const Template: StoryFn<StoryProps> = (args) => {
   const { control, register } = useForm()

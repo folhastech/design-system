@@ -9,7 +9,7 @@ import {
   useController,
 } from "react-hook-form"
 
-export type Props<T extends FieldValues> = {
+export type SwitchProps<T extends FieldValues> = {
   label?: string
   type?: string
   name: Path<T>
@@ -23,7 +23,15 @@ export type Props<T extends FieldValues> = {
 
 export const Switch = React.forwardRef(
   <T extends FieldValues>(
-    { label, className, rules, name, control, onClick, propValue }: Props<T>,
+    {
+      label,
+      className,
+      rules,
+      name,
+      control,
+      onClick,
+      propValue,
+    }: SwitchProps<T>,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
     const {

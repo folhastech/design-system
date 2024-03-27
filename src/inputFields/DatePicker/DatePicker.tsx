@@ -15,7 +15,7 @@ import { Popover } from "../../radixStyled/Popover"
 
 setDefaultOptions({ locale: ptBR })
 
-export type Props<T extends FieldValues> = {
+export type DatepickerProps<T extends FieldValues> = {
   label?: string
   type?: string
   placeholder: string
@@ -31,7 +31,15 @@ export type Props<T extends FieldValues> = {
 
 export const DatePicker = React.forwardRef(
   <T extends FieldValues>(
-    { label, placeholder, className, rules, name, control, minDate }: Props<T>,
+    {
+      label,
+      placeholder,
+      className,
+      rules,
+      name,
+      control,
+      minDate,
+    }: DatepickerProps<T>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     const [open, setOpen] = useState(false)

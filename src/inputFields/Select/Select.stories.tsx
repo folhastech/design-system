@@ -1,8 +1,8 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { FieldValues, useForm } from "react-hook-form"
-import { Props, Select } from "./Select"
+import { Select, SelectProps } from "./Select"
 
-type StoryProps = Omit<Props<FieldValues>, "control" | "register">
+type StoryProps = Omit<SelectProps<FieldValues>, "control" | "register">
 
 const Template: StoryFn<StoryProps> = (args) => {
   const { control, register } = useForm()

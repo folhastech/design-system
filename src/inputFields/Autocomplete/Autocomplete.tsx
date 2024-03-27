@@ -15,7 +15,7 @@ import {
 } from "react-hook-form"
 import { OptType, normalizeOptTypeToDefType } from "../SelectUtil"
 
-export type Props<T extends FieldValues> = {
+export type AutocompleteProps<T extends FieldValues> = {
   label?: string
   options?: InfiniteData<Pagination<DefType>>
   name: Path<T>
@@ -46,7 +46,7 @@ export const Autocomplete = React.forwardRef(
       getMoreOptions,
       getOptionLabel,
       filter,
-    }: Props<T>,
+    }: AutocompleteProps<T>,
     ref: React.ForwardedRef<HTMLSelectElement>
   ) => {
     const [query, setQuery] = useState("")

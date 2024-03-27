@@ -1,9 +1,9 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { Props, Switch } from "./Switch"
+import { Switch, SwitchProps } from "./Switch"
 
-const Template: StoryFn<Props<any>> = (args) => {
+const Template: StoryFn<SwitchProps<any>> = (args) => {
   const { control } = useForm()
   const [value, setValue] = useState(false)
 

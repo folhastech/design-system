@@ -15,7 +15,7 @@ import { OptType, normalizeOptTypeToDefType } from "../SelectUtil"
 import { SelectItem } from "./SelectItem"
 import { DefType, Pagination } from "./types"
 
-export type Props<T extends FieldValues> = {
+export type SelectProps<T extends FieldValues> = {
   label?: string
   options?: InfiniteData<Pagination<DefType>>
   optionsList?: OptType[]
@@ -85,7 +85,7 @@ export const Select = React.forwardRef(
       disabled,
       getMoreOptions,
       getOptionLabel,
-    }: Props<T>,
+    }: SelectProps<T>,
     ref: React.ForwardedRef<HTMLSelectElement>
   ) => {
     const [opt, setOpt] = useState<OptType[]>([])

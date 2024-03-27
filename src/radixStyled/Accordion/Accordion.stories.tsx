@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react"
-import { Accordion, Props } from "./Accordion"
+import { Accordion, AccordionProps } from "./Accordion"
 
-const Template: StoryFn<Props> = (args) => {
+const Template: StoryFn<AccordionProps> = (args) => {
   return <Accordion {...args} />
 }
 

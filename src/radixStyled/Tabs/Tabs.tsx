@@ -1,13 +1,13 @@
 import * as TabsRoot from "@radix-ui/react-tabs"
 import React from "react"
 
-export type Props = {
+export type TabProps = {
   children: React.ReactNode
   defaultValue: string
   onClick?: () => void
 }
 
-export const Tabs = React.forwardRef<HTMLDivElement, Props>(
+export const Tabs = React.forwardRef<HTMLDivElement, TabProps>(
   ({ children, defaultValue, onClick }, ref) => {
     return (
       <TabsRoot.Root

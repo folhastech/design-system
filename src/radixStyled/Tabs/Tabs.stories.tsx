@@ -2,9 +2,9 @@ import { Meta, StoryFn } from "@storybook/react"
 import { TabButton } from "./TabButton"
 import { TabContent } from "./TabContent"
 import { TabList } from "./TabList"
-import { Props, Tabs } from "./Tabs"
+import { TabProps, Tabs } from "./Tabs"
 
-const Template: StoryFn<Props> = (args) => {
+const Template: StoryFn<TabProps> = (args) => {
   return (
     <Tabs {...args}>
       <TabList>

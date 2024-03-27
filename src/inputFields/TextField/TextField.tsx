@@ -10,7 +10,7 @@ import {
 import { Button } from "../../Button"
 import { Icon } from "../../Icon"
 
-export type Props<T extends FieldValues> = {
+export type TextFieldProps<T extends FieldValues> = {
   label?: string
   type?: string
   placeholder?: string
@@ -47,7 +47,7 @@ export const TextField = React.forwardRef(
       icon,
       pattern,
       showBorder = true,
-    }: Props<T>,
+    }: TextFieldProps<T>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     const ownRef = useRef<HTMLInputElement>(null)

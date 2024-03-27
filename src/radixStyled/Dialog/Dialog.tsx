@@ -3,7 +3,7 @@ import clsx from "clsx"
 import React from "react"
 import { Button, ButtonProps } from "../../Button"
 
-export type Props = {
+export type DialogProps = {
   button: ButtonProps
   title: string
   description?: string
@@ -11,7 +11,7 @@ export type Props = {
   className?: string
 }
 
-export const Dialog: React.FC<Props> = ({
+export const Dialog: React.FC<DialogProps> = ({
   button,
   title,
   description,
