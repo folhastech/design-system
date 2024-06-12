@@ -110,8 +110,6 @@ export const Autocomplete = React.forwardRef(
             }
           >
             {opt.map((item) => {
-              if (item.disabled) return
-
               return (
                 <Combobox.Option
                   key={item.value}
