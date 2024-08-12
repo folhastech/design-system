@@ -13,6 +13,7 @@ jobs:
         with:
           node-version: 19
           registry-url: https://npm.pkg.github.com/
+      - run: npm install
       - run: npm ci
       - run: npm run build
       - name: Copy package.json to dist
