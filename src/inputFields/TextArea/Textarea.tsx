@@ -24,6 +24,8 @@ export type TextareaProps<T extends FieldValues> = {
   disabled?: boolean
   icon?: string
   showBorder?: boolean
+  rows?: number
+  cols?: number
 }
 
 export const Textarea = React.forwardRef(
@@ -41,6 +43,8 @@ export const Textarea = React.forwardRef(
       disabled,
       icon,
       showBorder = true,
+      rows,
+      cols,
     }: TextareaProps<T>,
     ref: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
@@ -50,7 +54,6 @@ export const Textarea = React.forwardRef(
       fieldState: { invalid },
       formState: { errors },
     } = useController({ name, control, rules })
-
 
     useEffect(() => {
       if (!ownRef.current) return
@@ -96,7 +99,7 @@ export const Textarea = React.forwardRef(
             readOnly={readOnly}
             ref={ownRef}
             className={clsx(
-              "appearance-none w-full focus:outline-none resize-y p-2",
+              "resize-none appearance-none w-full focus:outline-none p-2",
               placeholder &&
                 `placeholder:mb-4 placeholder:text-lg ${
                   invalid
@@ -115,6 +118,8 @@ export const Textarea = React.forwardRef(
             autoComplete={autoComplete}
             onClick={onClick}
             disabled={disabled}
+            rows={rows}
+            cols={cols}
           />
         </div>
 
