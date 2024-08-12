@@ -1,6 +1,6 @@
 {
   "name": "@folhastech/design-system",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "Componentes react do design system",
   "type": "module",
   "scripts": {
