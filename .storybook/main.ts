@@ -17,13 +17,12 @@ const config: StorybookConfig = {
         },
       },
     },
+    "@chromatic-com/storybook"
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
-  docs: {
-    autodocs: "tag",
-  },
+  docs: {},
 }
 export default config
