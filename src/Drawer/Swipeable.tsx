@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import { useSwipeable } from "react-swipeable"
 
 const config = {
@@ -16,7 +16,7 @@ type Props = {
   height: number
 }
 
-export const Swipeable: React.FC<Props> = ({
+export const Swipeable: React.FC<Props> = React.memo(({
   height,
   setHeight,
   setOpen,
@@ -53,12 +53,12 @@ export const Swipeable: React.FC<Props> = ({
 
   // eu com certeza demorei dms nesse codigo, mas basicamente, ele pega a altura do componente e diminui ou aumenta de acordo com o movimento do mouse
   const handlers = useSwipeable({
-    onSwiping: (eventData) => {
+    onSwiping: useCallback((eventData) => {
       setIsSwiping(true)
       setHeight(height - eventData.deltaY + prevDeltaY)
       setPrevDeltaY(eventData.deltaY)
-    },
-    onSwiped: (eventData) => {
+    }, [height, prevDeltaY]),
+    onSwiped: useCallback((eventData) => {
       setIsSwiping(false)
       if (eventData.dir === "Down") {
         let defH = contentRef?.current?.getBoundingClientRect()?.height
@@ -80,15 +80,13 @@ export const Swipeable: React.FC<Props> = ({
 
         // checks if the drawer is in the same height as the content, this will happen when the drawer was up and was first swiped down
         if (defHNow === defH) {
+          defH += 68
           setIsInSameHeight(true)
+          setHeight(defH)
         } else {
           setIsInSameHeight(false)
         }
 
-        // adding the padding and border values to the height
-        defH += 68
-        // if it was not on the same height, it will set the height to the default height
-        setHeight(defH)
       }
 
       if (eventData.dir === "Up") {
@@ -96,7 +94,7 @@ export const Swipeable: React.FC<Props> = ({
         setIsInSameHeight(false)
         setHeight(vh - 10)
       }
-    },
+    }, [height, prevDeltaY, setOpen, contentRef, isFirstSwipe, isInSameHeight, vh]),
     ...config,
   })
 
@@ -108,4 +106,4 @@ export const Swipeable: React.FC<Props> = ({
       <div className="h-1 w-8 rounded-full bg-gray-10"></div>
     </div>
   )
-}
+})

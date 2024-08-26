@@ -45,6 +45,7 @@ export const DatePicker = React.forwardRef(
     const [open, setOpen] = useState(false)
     const [inputValue, setInputValue] = useState<any>("")
     const ownRef = useRef<HTMLInputElement>(null)
+    const popOverRef = useRef<HTMLInputElement>(null)
     const {
       field: { onChange, onBlur, value },
       fieldState: { invalid },
@@ -56,7 +57,24 @@ export const DatePicker = React.forwardRef(
         setInputValue(format(value, "dd/MM/yyyy"))
       }
     }, [])
+    // Close the Popover when clicking outside
+    useEffect(() => {
+      function handleClickOutside(event: MouseEvent) {
+        if (
+          ownRef.current &&
+          popOverRef.current &&
+          !ownRef.current.contains(event.target as Node) &&
+          !popOverRef.current.contains(event.target as Node)
+        ) {
+          setOpen(false)
+        }
+      }
 
+      document.addEventListener("mousedown", handleClickOutside)
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside)
+      }
+    }, [ownRef, ref])
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.currentTarget.value)
 
@@ -95,7 +113,7 @@ export const DatePicker = React.forwardRef(
     }, [])
 
     return (
-      <div className={className}>
+      <div ref={ref} className={className}>
         <div className="flex flex-col">
           {label && (
             <label className="mb-2 text-lg font-bold text-gray-10">
@@ -141,7 +159,7 @@ export const DatePicker = React.forwardRef(
           </div>
         </div>
 
-        <Popover open={open} setOpen={setOpen}>
+        <Popover ref={popOverRef} open={open} setOpen={setOpen}>
           <DayPicker
             fromDate={minDate}
             initialFocus={open}

@@ -104,7 +104,6 @@ export const Select = React.forwardRef(
     }, [value])
 
     useEffect(() => {
-      console.log("her")
       if (optionsList) {
         setOpt(optionsList)
       } else {

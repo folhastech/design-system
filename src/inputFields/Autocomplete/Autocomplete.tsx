@@ -1,4 +1,4 @@
-import { Combobox } from "@headlessui/react"
+import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from "@headlessui/react"
 import { InfiniteData } from "@tanstack/react-query"
 import clsx from "clsx"
 import { DefType, Pagination } from "inputFields/Select/types"
@@ -80,8 +80,8 @@ export const Autocomplete = React.forwardRef(
     return (
       <div className="flex flex-col gap-2">
         {label && <label className="text-sm text-gray-10">{label}</label>}
-        <Combobox value={value} onChange={onChange} disabled={disabled}>
-          <Combobox.Input
+        <Combobox immediate value={value} onChange={onChange} disabled={disabled}>
+          <ComboboxInput
             className={clsx(
               "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 pr-2 text-lg text-gray-10 focus:outline-none placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10",
               {
@@ -95,7 +95,7 @@ export const Autocomplete = React.forwardRef(
             onChange={(event) => setQuery(event.target.value)}
             displayValue={(value: OptType["value"]) => optionLabel || value}
           />
-          <Combobox.Options
+          <ComboboxOptions
             onScroll={(e) => {
               if (!getMoreOptions || isLoading) return
               if (
@@ -111,7 +111,7 @@ export const Autocomplete = React.forwardRef(
           >
             {opt.map((item) => {
               return (
-                <Combobox.Option
+                <ComboboxOption
                   key={item.value}
                   value={item.value}
                   className={
@@ -119,12 +119,12 @@ export const Autocomplete = React.forwardRef(
                   }
                 >
                   {item.label}
-                </Combobox.Option>
+                </ComboboxOption>
               )
             })}
 
             {isLoading && (
-              <Combobox.Option
+              <ComboboxOption
                 value={"load"}
                 className={
                   "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none"
@@ -134,9 +134,9 @@ export const Autocomplete = React.forwardRef(
                 <div className="w-full flex justify-center items-center animate-spin">
                   <Icon name={"progress_activity"} />
                 </div>
-              </Combobox.Option>
+              </ComboboxOption>
             )}
-          </Combobox.Options>
+          </ComboboxOptions>
         </Combobox>
       </div>
     )
