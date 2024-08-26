@@ -8,7 +8,7 @@ type StoryProps = Omit<
 >
 
 const Template: StoryFn<StoryProps> = (args) => {
-  const { control, register } = useForm()
+  const { control } = useForm()
   const name: Path<FieldValues> = "example"
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) =>
     console.log(e.target.value)
@@ -28,7 +28,7 @@ Primary.args = {
   placeholder: "Placeholder",
   isLoading: false,
   disabled: false,
-  getMoreOptions: () => {},
+  getMoreOptions: () => { },
   options: {
     pages: [
       {
