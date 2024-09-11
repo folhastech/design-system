@@ -1,6 +1,6 @@
 import { debounce } from "lodash"
 import React, { useEffect } from "react"
-import { useForm } from "react-hook-form"
+import { FormProvider, useForm } from "react-hook-form"
 import { Drawer } from "../Drawer"
 import { Icon } from "../Icon"
 import { TextField } from "../inputFields/TextField"
@@ -11,9 +11,10 @@ type DrawerPops = {
   form: React.ReactNode
   open?: boolean
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>
+  setFilterValues?: React.Dispatch<React.SetStateAction<any>>
 }
 export type SearchBarProps = {
-  filterButton?: DrawerPops
+  filterDrawer?: DrawerPops
   addButton?: DrawerPops
   setQuery: React.Dispatch<React.SetStateAction<string>>
   placeholder?: string
@@ -22,8 +23,17 @@ export type SearchBarProps = {
 export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
   HTMLDivElement,
   SearchBarProps
->(({ filterButton, addButton, setQuery, placeholder }, ref) => {
-  const { control, register, watch } = useForm()
+>(({ filterDrawer, addButton, setQuery, placeholder }, ref) => {
+  const form = useForm()
+  const { control, register, watch, setValue, handleSubmit } = form
+
+  handleSubmit(() => {
+    const search = watch("search")
+    setValue("search", "")
+    filterDrawer?.setFilterValues?.(form.getValues())
+    setValue("search", search)
+    filterDrawer?.setOpen?.(false)
+  })
 
   useEffect(() => {
     const debounced = debounce(() => setQuery(watch("search")), 500)
@@ -46,21 +56,23 @@ export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
       />
 
       <div className="flex gap-6 text-primary-0">
-        {filterButton && (
+        {filterDrawer && (
           <Drawer
-            title={filterButton.title}
-            description={filterButton.description}
-            open={filterButton.open || false}
-            setOpen={filterButton.setOpen || (() => {})}
+            title={filterDrawer.title}
+            description={filterDrawer.description}
+            open={filterDrawer.open || false}
+            setOpen={filterDrawer.setOpen || (() => { })}
             button={{
               variant: "text",
-              onClick: () => filterButton?.setOpen?.(true),
+              onClick: () => filterDrawer?.setOpen?.(true),
               children: (
                 <Icon name="filter_list" className={"text-primary-0"} />
               ),
             }}
           >
-            {filterButton.form}
+            <FormProvider {...form}>
+              {filterDrawer.form}
+            </FormProvider>
           </Drawer>
         )}
 
@@ -69,7 +81,7 @@ export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
             title={addButton.title}
             description={addButton.description}
             open={addButton.open || false}
-            setOpen={addButton.setOpen || (() => {})}
+            setOpen={addButton.setOpen || (() => { })}
             button={{
               variant: "text",
               onClick: () => addButton?.setOpen?.(true),
