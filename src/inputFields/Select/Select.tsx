@@ -115,7 +115,7 @@ export const Select = React.forwardRef(
 
     return (
       <div className="flex flex-col gap-2">
-        {label && <label className="text-sm text-gray-10">{label}</label>}
+        {label && <label className="text-lg text-primary-0">{label}</label>}
         <SelectRoot.Root
           autoComplete="on"
           onValueChange={onChange}

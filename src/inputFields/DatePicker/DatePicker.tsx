@@ -116,7 +116,7 @@ export const DatePicker = React.forwardRef(
       <div ref={ref} className={className}>
         <div className="flex flex-col">
           {label && (
-            <label className="mb-2 text-lg font-bold text-gray-10">
+            <label className="text-primary-0 font-semibold">
               {label}
             </label>
           )}

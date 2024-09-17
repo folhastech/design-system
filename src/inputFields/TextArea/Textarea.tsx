@@ -7,7 +7,6 @@ import {
   RegisterOptions,
   useController,
 } from "react-hook-form"
-import { Button } from "../../Button"
 import { Icon } from "../../Icon"
 
 export type TextareaProps<T extends FieldValues> = {
@@ -72,13 +71,13 @@ export const Textarea = React.forwardRef(
 
     return (
       <div className={clsx("flex flex-col", className)}>
-        {label && <label>{label}</label>}
+        {label && <label className="text-primary-0 font-semibold">{label}</label>}
 
         <div
           className={clsx(
             "flex flex-row gap-2 items-center mb-2 h-auto w-full focus:outline-none",
             showBorder &&
-              `border-b ${invalid ? "border-error-10" : "border-gray-30"}`,
+            `border-b ${invalid ? "border-error-10" : "border-gray-30"}`,
             {
               " text-error-10 placeholder:text-error-10": invalid,
             }
@@ -101,11 +100,10 @@ export const Textarea = React.forwardRef(
             className={clsx(
               "resize-none appearance-none w-full focus:outline-none p-2",
               placeholder &&
-                `placeholder:mb-4 placeholder:text-lg ${
-                  invalid
-                    ? "placeholder:text-error-10"
-                    : "placeholder:text-gray-10"
-                } `,
+              `placeholder:mb-4 placeholder:text-lg ${invalid
+                ? "placeholder:text-error-10"
+                : "placeholder:text-gray-10"
+              } `,
               {
                 "border-gray-30 text-gray-30 placeholder:text-gray-30":
                   disabled,

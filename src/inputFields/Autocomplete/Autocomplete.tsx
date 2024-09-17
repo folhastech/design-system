@@ -79,7 +79,7 @@ export const Autocomplete = React.forwardRef(
 
     return (
       <div className="flex flex-col gap-2">
-        {label && <label className="text-sm text-gray-10">{label}</label>}
+        {label && <label className=" text-primary-0 font-semibold ">{label}</label>}
         <Combobox immediate value={value} onChange={onChange} disabled={disabled}>
           <ComboboxInput
             className={clsx(

@@ -79,13 +79,13 @@ export const TextField = React.forwardRef(
 
     return (
       <div className={clsx("flex flex-col", className)}>
-        {label && <label>{label}</label>}
+        {label && <label className="text-primary-0 font-semibold">{label}</label>}
 
         <div
           className={clsx(
             "flex flex-row gap-2 items-center mb-2 h-[45px] w-full focus:outline-none",
             showBorder &&
-              `border-b ${invalid ? "border-error-10" : "border-gray-30"}`,
+            `border-b ${invalid ? "border-error-10" : "border-gray-30"}`,
             {
               " text-error-10 placeholder:text-error-10": invalid,
             }
@@ -108,11 +108,10 @@ export const TextField = React.forwardRef(
             className={clsx(
               "apearance-none w-full focus:outline-none",
               placeholder &&
-                `placeholder:mb-4 placeholder:text-lg ${
-                  invalid
-                    ? "placeholder:text-error-10"
-                    : "placeholder:text-gray-10"
-                } `,
+              `placeholder:mb-4 placeholder:text-lg ${invalid
+                ? "placeholder:text-error-10"
+                : "placeholder:text-gray-10"
+              } `,
               {
                 "border-gray-30 text-gray-30 placeholder:text-gray-30":
                   disabled,
