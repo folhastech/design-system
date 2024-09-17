@@ -39,7 +39,7 @@ export const Switch = React.forwardRef(
     } = useController({ name, control, rules })
 
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 z-1">
         <SwitchRoot.Root
           ref={ref}
           onChange={onChange}
@@ -50,7 +50,7 @@ export const Switch = React.forwardRef(
             "group",
             "rdx-state-checked:bg-primary-40",
             "rdx-state-unchecked:bg-gray-30",
-            "relative inline-flex h-[24px] w-[44px] flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out",
+            "inline-flex h-[24px] w-[44px] flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out",
             "focus:outline-none focus-visible:ring focus-visible:ring-primary-40 focus-visible:ring-opacity-75",
             className
           )}
@@ -59,7 +59,7 @@ export const Switch = React.forwardRef(
             className={clsx(
               "group-rdx-state-checked:translate-x-5",
               "group-rdx-state-unchecked:translate-x-0",
-              "pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
+              "pointer-events-none h-[20px] w-[20px] rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
             )}
           />
         </SwitchRoot.Root>

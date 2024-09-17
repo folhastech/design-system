@@ -70,7 +70,7 @@ export const TextField = React.forwardRef(
         if (!ownRef.current) return
         // Enable the input after a delay
         if (!disabled) ownRef.current.disabled = false
-      }, 100)
+      }, 103)
 
       return () => {
         clearTimeout(timeout) // Clear the timeout if the component unmounts
@@ -94,7 +94,12 @@ export const TextField = React.forwardRef(
           {icon && (
             <Icon
               onClick={() => {
-                if (!ownRef) return
+                if (ref) {
+                  if ('current' in ref) {
+                    ref.current?.focus()!
+                    return
+                  }
+                }
                 ownRef.current?.focus()
               }}
               name={icon}
@@ -104,7 +109,7 @@ export const TextField = React.forwardRef(
 
           <input
             readOnly={readOnly}
-            ref={ownRef}
+            ref={ref || ownRef}
             className={clsx(
               "apearance-none w-full focus:outline-none",
               placeholder &&

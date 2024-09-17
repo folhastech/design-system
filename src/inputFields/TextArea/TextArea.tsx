@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import {
   Control,
   FieldValues,
@@ -9,7 +9,7 @@ import {
 } from "react-hook-form"
 import { Icon } from "../../Icon"
 
-export type TextareaProps<T extends FieldValues> = {
+export type TextAreaProps<T extends FieldValues> = {
   label?: string
   placeholder?: string
   name: Path<T>
@@ -27,7 +27,7 @@ export type TextareaProps<T extends FieldValues> = {
   cols?: number
 }
 
-export const Textarea = React.forwardRef(
+export const TextArea = React.forwardRef(
   <T extends FieldValues>(
     {
       label,
@@ -44,7 +44,7 @@ export const Textarea = React.forwardRef(
       showBorder = true,
       rows,
       cols,
-    }: TextareaProps<T>,
+    }: TextAreaProps<T>,
     ref: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
     const ownRef = useRef<HTMLTextAreaElement>(null)
@@ -53,21 +53,6 @@ export const Textarea = React.forwardRef(
       fieldState: { invalid },
       formState: { errors },
     } = useController({ name, control, rules })
-
-    useEffect(() => {
-      if (!ownRef.current) return
-      ownRef.current.disabled = true
-      ownRef.current?.blur()
-
-      const timeout = setTimeout(() => {
-        if (!ownRef.current) return
-        if (!disabled) ownRef.current.disabled = false
-      }, 100)
-
-      return () => {
-        clearTimeout(timeout)
-      }
-    }, [])
 
     return (
       <div className={clsx("flex flex-col", className)}>
@@ -86,8 +71,14 @@ export const Textarea = React.forwardRef(
           {icon && (
             <Icon
               onClick={() => {
-                if (!ownRef) return
+                if (ref) {
+                  if ('current' in ref) {
+                    ref?.current?.focus()
+                    return
+                  }
+                }
                 ownRef.current?.focus()
+                return
               }}
               name={icon}
               className="cursor-pointer text-primary-0 select-none"
@@ -96,7 +87,7 @@ export const Textarea = React.forwardRef(
 
           <textarea
             readOnly={readOnly}
-            ref={ownRef}
+            ref={ref || ownRef}
             className={clsx(
               "resize-none appearance-none w-full focus:outline-none p-2",
               placeholder &&

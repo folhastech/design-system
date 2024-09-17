@@ -1,18 +1,18 @@
 import { Meta, StoryFn } from "@storybook/react"
 import { FieldValues, useForm } from "react-hook-form"
-import { Textarea, TextareaProps } from "./Textarea"
+import { TextArea, TextAreaProps } from "./TextArea"
 
-type StoryProps = Omit<TextareaProps<FieldValues>, "control" | "register">
+type StoryProps = Omit<TextAreaProps<FieldValues>, "control" | "register">
 
 const Template: StoryFn<StoryProps> = (args) => {
   const { control, register } = useForm()
 
-  return <Textarea {...args} {...register("example")} control={control} />
+  return <TextArea {...args} {...register("example")} control={control} />
 }
 
 export default {
-  title: "Components/inputFields/Textarea",
-  component: Textarea,
+  title: "Components/inputFields/TextArea",
+  component: TextArea,
 } as Meta
 
 export const Primary = Template.bind({})
