@@ -17,10 +17,8 @@ export default {
 export const Primary = Template.bind({})
 Primary.args = {
   placeholder: "Select",
-  optionsList: [
-    { value: "Option 1", label: "Option 1" },
-    { value: "Option 2", label: "Option 2" },
-    { value: "Option 3", label: "Option 3" },
+  options: [
+    { id: "Option 1", name: "Option 1" },
   ],
   getOptionLabel: (option) => option as string,
 }

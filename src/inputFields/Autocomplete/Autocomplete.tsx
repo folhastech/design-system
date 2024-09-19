@@ -13,7 +13,7 @@ import {
   RegisterOptions,
   useController,
 } from "react-hook-form"
-import { OptType, normalizeOptTypeToDefType } from "../SelectUtil"
+import { OptType, normalizeDefTypeToOptType } from "../SelectUtil"
 
 export type AutocompleteProps<T extends FieldValues> = {
   label?: string
@@ -69,7 +69,7 @@ export const Autocomplete = React.forwardRef(
     useEffect(() => {
       if (!options) return
       const allOpt = options?.pages.map((page) => page.content).flat()
-      setOpt(allOpt?.map(normalizeOptTypeToDefType))
+      setOpt(allOpt?.map(normalizeDefTypeToOptType))
     }, [options])
 
     useEffect(() => {

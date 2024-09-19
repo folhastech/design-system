@@ -35,12 +35,12 @@ Primary.args = {
         content: [
           {
             active: true,
-            id: 1,
+            id: "1",
             name: "opt1",
           },
           {
             active: true,
-            id: 2,
+            id: "2",
             name: "opt2",
           },
         ],

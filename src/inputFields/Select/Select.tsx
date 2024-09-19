@@ -10,12 +10,13 @@ import {
 } from "react-hook-form"
 import { Icon } from "../../Icon"
 import { useSize } from "../../hooks/useSize"
-import { OptType } from "../SelectUtil"
+import { OptType, normalizeDefTypeToOptType } from "../SelectUtil"
 import { SelectItem } from "./SelectItem"
+import { DefType } from "./types"
 
 export type SelectProps<T extends FieldValues> = {
   label?: string
-  options?: OptType[]
+  options: OptType[] | DefType[]
   name: Path<T>
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
   className?: string
@@ -70,6 +71,7 @@ export const Select = React.forwardRef(
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
     const [optionLabel, setOptionLabel] = useState<string | undefined>()
+    const [opts, setOpts] = useState<OptType[] | undefined>()
     const size = useSize()
     const isMobile = size === "sm" || size === "md"
 
@@ -82,12 +84,27 @@ export const Select = React.forwardRef(
 
       if (!getOptionLabel) {
         setOptionLabel(
-          options?.find((item) => item?.value === value)?.label ?? ""
+          opts?.find((item) => item?.value === value)?.label ?? ""
         )
         return
       }
       setOptionLabel(getOptionLabel(value))
     }, [value])
+
+    function isDefType(obj: any): obj is DefType {
+      return 'id' in obj && 'name' in obj;
+    }
+
+    useEffect(() => {
+      if (!options) return
+      if (isDefType(options[0])) {
+        setOpts(options.map((item) => normalizeDefTypeToOptType(item as DefType)))
+        return
+      } else {
+        setOpts(options as OptType[])
+      }
+
+    }, [options])
 
     return (
       <div className="flex flex-col gap-2">
@@ -129,7 +146,7 @@ export const Select = React.forwardRef(
                 className="m-2 mr-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-auto"
               >
                 <SelectRoot.Group>
-                  {options?.map((item) => {
+                  {opts?.map((item) => {
                     return (
                       <SelectItem
                         className="hover:bg-gray-50 cursor-pointer"

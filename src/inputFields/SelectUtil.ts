@@ -6,10 +6,10 @@ export type OptType = {
   disabled?: boolean
 }
 
-export function normalizeOptTypeToDefType(defType: DefType): OptType {
+export function normalizeDefTypeToOptType(defType: DefType): OptType {
   return {
     label: defType.name,
     value: defType.id.toString(),
-    disabled: !defType.active,
+    disabled: defType?.active !== undefined ? !defType.active : false,
   }
 }

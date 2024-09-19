@@ -1,6 +1,6 @@
 export type DefType = {
-  active: boolean
-  id: number
+  active?: boolean
+  id: string
   name: string
 }
 
