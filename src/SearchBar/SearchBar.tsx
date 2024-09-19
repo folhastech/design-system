@@ -27,7 +27,7 @@ export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
   const form = useForm()
   const { control, register, watch, setValue, handleSubmit } = form
 
-  const onSumbit = () => {
+  const onSubmit = () => {
     const search = watch("search")
     setValue("search", "")
     filterDrawer?.setFilterValues?.(form.getValues())
