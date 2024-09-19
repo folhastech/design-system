@@ -27,13 +27,13 @@ export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
   const form = useForm()
   const { control, register, watch, setValue, handleSubmit } = form
 
-  handleSubmit(() => {
+  const onSumbit = () => {
     const search = watch("search")
     setValue("search", "")
     filterDrawer?.setFilterValues?.(form.getValues())
     setValue("search", search)
     filterDrawer?.setOpen?.(false)
-  })
+  }
 
   useEffect(() => {
     const debounced = debounce(() => setQuery(watch("search")), 500)
@@ -70,9 +70,15 @@ export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
               ),
             }}
           >
-            <FormProvider {...form}>
-              {filterDrawer.form}
-            </FormProvider>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              className="flex min-h-full flex-col justify-between gap-4"
+            >
+              <FormProvider {...form}>
+                {filterDrawer.form}
+              </FormProvider>
+             </form>
           </Drawer>
         )}
 
