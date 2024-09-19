@@ -73,7 +73,7 @@ export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
             <form
               onSubmit={handleSubmit(onSubmit)}
               noValidate
-              className="flex min-h-full flex-col justify-between gap-4"
+              className="flex h-full flex-col justify-between gap-4"
             >
               <FormProvider {...form}>
                 {filterDrawer.form}
