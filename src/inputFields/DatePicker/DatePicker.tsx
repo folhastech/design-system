@@ -77,7 +77,8 @@ export const DatePicker = React.forwardRef(
 
     useEffect(() => {
       //TODO: fix
-      if (!inputValue.contains("/")) {
+      if (!inputValue) return
+      if (!inputValue.includes("/")) {
         setValueInput(inputValue)
       }
     }, [inputValue])

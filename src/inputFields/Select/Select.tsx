@@ -146,7 +146,7 @@ export const Select = React.forwardRef(
               }}
             >
               <SelectRoot.Viewport
-                className="h-full m-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-scroll"
+                className="h-full m-2 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-scroll"
               >
                 {opts?.map((item) => {
                   return (
