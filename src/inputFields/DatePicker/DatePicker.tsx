@@ -112,23 +112,6 @@ export const DatePicker = React.forwardRef(
       }
     }
 
-    useEffect(() => {
-      if (!ownRef.current) return
-      // Disable the input when the component mounts
-      ownRef.current.disabled = true
-      ownRef.current?.blur()
-
-      const timeout = setTimeout(() => {
-        if (!ownRef.current) return
-        // Enable the input after a delay
-        ownRef.current.disabled = false
-      }, 100)
-
-      return () => {
-        clearTimeout(timeout) // Clear the timeout if the component unmounts
-      }
-    }, [])
-
     if (!shouldRender) return <></>
 
     return (
