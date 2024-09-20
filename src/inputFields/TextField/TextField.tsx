@@ -27,6 +27,7 @@ export type TextFieldProps<T extends FieldValues> = {
   icon?: string
   pattern?: string
   showBorder?: boolean
+  shouldRender?: boolean
 }
 
 export const TextField = React.forwardRef(
@@ -47,6 +48,7 @@ export const TextField = React.forwardRef(
       icon,
       pattern,
       showBorder = true,
+      shouldRender = true
     }: TextFieldProps<T>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
@@ -76,6 +78,8 @@ export const TextField = React.forwardRef(
         clearTimeout(timeout) // Clear the timeout if the component unmounts
       }
     }, [])
+
+    if (!shouldRender) return <></>
 
     return (
       <div className={clsx("flex flex-col", className)}>

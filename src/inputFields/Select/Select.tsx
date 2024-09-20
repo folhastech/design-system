@@ -25,6 +25,7 @@ export type SelectProps<T extends FieldValues> = {
   placeholder?: string
   disabled?: boolean
   getOptionLabel?: (value: number | string) => string
+  shouldRender?: boolean
 }
 
 /**
@@ -67,6 +68,7 @@ export const Select = React.forwardRef(
       placeholder,
       disabled,
       getOptionLabel,
+      shouldRender = true,
     }: SelectProps<T>,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
@@ -106,6 +108,7 @@ export const Select = React.forwardRef(
 
     }, [options])
 
+    if (!shouldRender) return <></>
     return (
       <div className="flex flex-col gap-2">
         {label && <label className="font-semibold  text-primary-0">{label}</label>}

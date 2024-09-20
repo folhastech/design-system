@@ -29,6 +29,7 @@ export type AutocompleteProps<T extends FieldValues> = {
   getMoreOptions?: () => void
   getOptionLabel?: (value: number | string) => string
   filter?: (value: string) => void
+  shouldRender?: boolean
 }
 
 export const Autocomplete = React.forwardRef(
@@ -46,6 +47,7 @@ export const Autocomplete = React.forwardRef(
       getMoreOptions,
       getOptionLabel,
       filter,
+      shouldRender = true
     }: AutocompleteProps<T>,
     ref: React.ForwardedRef<HTMLSelectElement>
   ) => {
@@ -76,6 +78,9 @@ export const Autocomplete = React.forwardRef(
       if (!getOptionLabel || !value) return
       setOptionLabel(getOptionLabel(value))
     }, [value])
+
+
+    if (!shouldRender) return <></>
 
     return (
       <div className="flex flex-col gap-2">

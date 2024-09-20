@@ -27,6 +27,7 @@ export type DatepickerProps<T extends FieldValues> = {
   readOnly?: boolean
   autoComplete?: string
   minDate?: Date
+  shouldRender?: boolean
 }
 
 export const DatePicker = React.forwardRef(
@@ -39,6 +40,7 @@ export const DatePicker = React.forwardRef(
       name,
       control,
       minDate,
+      shouldRender = true
     }: DatepickerProps<T>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
@@ -111,6 +113,8 @@ export const DatePicker = React.forwardRef(
         clearTimeout(timeout) // Clear the timeout if the component unmounts
       }
     }, [])
+
+    if (!shouldRender) return <></>
 
     return (
       <div ref={ref} className={className}>

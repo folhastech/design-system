@@ -78,7 +78,7 @@ export const SearchBar: React.FC<SearchBarProps> = React.forwardRef<
               <FormProvider {...form}>
                 {filterDrawer.form}
               </FormProvider>
-             </form>
+            </form>
           </Drawer>
         )}
 

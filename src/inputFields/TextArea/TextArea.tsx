@@ -25,6 +25,7 @@ export type TextAreaProps<T extends FieldValues> = {
   showBorder?: boolean
   rows?: number
   cols?: number
+  shouldRender?: boolean
 }
 
 export const TextArea = React.forwardRef(
@@ -44,6 +45,7 @@ export const TextArea = React.forwardRef(
       showBorder = true,
       rows,
       cols,
+      shouldRender = true
     }: TextAreaProps<T>,
     ref: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
@@ -53,6 +55,8 @@ export const TextArea = React.forwardRef(
       fieldState: { invalid },
       formState: { errors },
     } = useController({ name, control, rules })
+
+    if (!shouldRender) return <></>
 
     return (
       <div className={clsx("flex flex-col", className)}>

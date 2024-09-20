@@ -19,6 +19,7 @@ export type SwitchProps<T extends FieldValues> = {
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void
   customOnChange?: (e: React.ChangeEvent<HTMLButtonElement>) => void
   propValue?: boolean
+  shouldRender?: boolean
 }
 
 export const Switch = React.forwardRef(
@@ -31,6 +32,7 @@ export const Switch = React.forwardRef(
       control,
       onClick,
       propValue,
+      shouldRender = true,
     }: SwitchProps<T>,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
@@ -38,6 +40,7 @@ export const Switch = React.forwardRef(
       field: { onChange, onBlur, value },
     } = useController({ name, control, rules })
 
+    if (!shouldRender) return <></>
     return (
       <div className="flex items-center gap-2 z-1">
         <SwitchRoot.Root
