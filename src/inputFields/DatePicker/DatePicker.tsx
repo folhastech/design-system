@@ -27,6 +27,7 @@ export type DatepickerProps<T extends FieldValues> = {
   readOnly?: boolean
   autoComplete?: string
   minDate?: Date
+  disabled?: boolean
   shouldRender?: boolean
 }
 
@@ -40,6 +41,7 @@ export const DatePicker = React.forwardRef(
       name,
       control,
       minDate,
+      disabled,
       shouldRender = true
     }: DatepickerProps<T>,
     ref: React.ForwardedRef<HTMLInputElement>
@@ -106,7 +108,7 @@ export const DatePicker = React.forwardRef(
     const handleDaySelect = (date?: Date) => {
       onChange(date)
       if (date) {
-        setInputValue(format(date, "dd/MM/yyyy"))
+        setValueInput(date)
       } else {
         setInputValue("")
       }
@@ -129,6 +131,7 @@ export const DatePicker = React.forwardRef(
               className="absolute mb-2 text-gray-10 "
             />
             <input
+              disabled={disabled}
               ref={ownRef}
               className={clsx(
                 "apearance-none mb-2 h-[45px] w-full border-b-2 text-center focus:outline-none",
@@ -147,6 +150,9 @@ export const DatePicker = React.forwardRef(
               onChange={handleInputChange}
               onBlur={onBlur}
               onClick={() => {
+                if (disabled) {
+                  return
+                }
                 setOpen(!open)
               }}
             />
@@ -163,6 +169,7 @@ export const DatePicker = React.forwardRef(
 
         <Popover ref={popOverRef} open={open} setOpen={setOpen}>
           <DayPicker
+            disabled={disabled}
             fromDate={minDate}
             initialFocus={open}
             mode="single"

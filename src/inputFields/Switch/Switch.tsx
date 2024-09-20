@@ -20,6 +20,7 @@ export type SwitchProps<T extends FieldValues> = {
   customOnChange?: (e: React.ChangeEvent<HTMLButtonElement>) => void
   propValue?: boolean
   shouldRender?: boolean
+  disabled?: boolean
 }
 
 export const Switch = React.forwardRef(
@@ -33,6 +34,7 @@ export const Switch = React.forwardRef(
       onClick,
       propValue,
       shouldRender = true,
+      disabled,
     }: SwitchProps<T>,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
@@ -49,6 +51,7 @@ export const Switch = React.forwardRef(
           onBlur={onBlur}
           checked={value || propValue || false}
           onClick={onClick}
+          disabled={disabled}
           className={clsx(
             "group",
             "rdx-state-checked:bg-primary-40",

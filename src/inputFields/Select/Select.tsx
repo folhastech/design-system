@@ -91,7 +91,7 @@ export const Select = React.forwardRef(
         return
       }
       setOptionLabel(getOptionLabel(value))
-    }, [value])
+    }, [value, opts])
 
     function isDefType(obj: any): obj is DefType {
       return 'id' in obj && 'name' in obj;
@@ -140,28 +140,26 @@ export const Select = React.forwardRef(
             <SelectRoot.Content
               onBlur={onBlur}
               position={!isMobile ? "popper" : undefined}
-              className="w-full bg-white z-50"
+              className="w-full bg-white z-50 overflow-y-scroll"
               ref={(ref) => {
                 ref?.addEventListener("touchend", (e) => e.preventDefault())
               }}
             >
               <SelectRoot.Viewport
-                className="m-2 mr-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-auto"
+                className="m-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-scroll"
               >
-                <SelectRoot.Group>
-                  {opts?.map((item) => {
-                    return (
-                      <SelectItem
-                        className="hover:bg-gray-50 cursor-pointer"
-                        key={item?.value}
-                        value={item?.value}
-                        disabled={item?.disabled}
-                      >
-                        {item?.label}
-                      </SelectItem>
-                    )
-                  })}
-                </SelectRoot.Group>
+                {opts?.map((item) => {
+                  return (
+                    <SelectItem
+                      className="hover:bg-gray-50 cursor-pointer"
+                      key={item?.value}
+                      value={item?.value}
+                      disabled={item?.disabled}
+                    >
+                      {item?.label}
+                    </SelectItem>
+                  )
+                })}
               </SelectRoot.Viewport>
             </SelectRoot.Content>
           </SelectRoot.Portal>
