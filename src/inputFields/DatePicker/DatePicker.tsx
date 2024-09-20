@@ -54,7 +54,7 @@ export const DatePicker = React.forwardRef(
       formState: { errors },
     } = useController({ name, control, rules })
 
-    useEffect(() => {
+    const setValueInput = (value: any) => {
       if (value) {
         let isoValue = null
         try {
@@ -67,6 +67,10 @@ export const DatePicker = React.forwardRef(
         }
         setInputValue(format(isoValue ?? value, "dd/MM/yyyy"))
       }
+    }
+
+    useEffect(() => {
+      setValueInput(value)
     }, [value])
 
     // Close the Popover when clicking outside
@@ -89,7 +93,7 @@ export const DatePicker = React.forwardRef(
     }, [ownRef, ref])
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(e.currentTarget.value)
+      setValueInput(e.currentTarget.value)
 
       const date = parse(e.currentTarget.value, "dd/MM/yyyy", new Date())
       if (isValid(date)) {
