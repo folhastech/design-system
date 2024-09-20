@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { format, isValid, parse, setDefaultOptions } from "date-fns"
+import { format, isValid, parse, parseISO, setDefaultOptions } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import React, { useEffect, useRef, useState } from "react"
 import { DayPicker } from "react-day-picker"
@@ -56,9 +56,19 @@ export const DatePicker = React.forwardRef(
 
     useEffect(() => {
       if (value) {
-        setInputValue(format(value, "dd/MM/yyyy"))
+        let isoValue = null
+        try {
+          isoValue = parseISO(value)
+          if (!isValid(isoValue)) {
+            isoValue = null
+          }
+        } catch (e) {
+          console.error(e)
+        }
+        setInputValue(format(isoValue ?? value, "dd/MM/yyyy"))
       }
-    }, [])
+    }, [value])
+
     // Close the Popover when clicking outside
     useEffect(() => {
       function handleClickOutside(event: MouseEvent) {
@@ -77,6 +87,7 @@ export const DatePicker = React.forwardRef(
         document.removeEventListener("mousedown", handleClickOutside)
       }
     }, [ownRef, ref])
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.currentTarget.value)
 

@@ -9,7 +9,7 @@ export type OptType = {
 export function normalizeDefTypeToOptType(defType: DefType): OptType {
   return {
     label: defType.name,
-    value: defType.id.toString(),
+    value: defType.id,
     disabled: defType?.active !== undefined ? !defType.active : false,
   }
 }

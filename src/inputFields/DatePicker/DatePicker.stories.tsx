@@ -8,7 +8,9 @@ type StoryProps = Omit<
 >
 
 const Template: StoryFn<StoryProps> = (args) => {
-  const { control } = useForm()
+  const { control } = useForm(
+    { defaultValues: { example: "2024-09-16T23:23:34.175243" } }
+  )
   const name: Path<FieldValues> = "example"
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     console.log(e.target.value)
