@@ -75,14 +75,6 @@ export const DatePicker = React.forwardRef(
       setValueInput(value)
     }, [value])
 
-    useEffect(() => {
-      //TODO: fix
-      if (!inputValue) return
-      if (!inputValue.includes("/")) {
-        setValueInput(inputValue)
-      }
-    }, [inputValue])
-
     // Close the Popover when clicking outside
     useEffect(() => {
       function handleClickOutside(event: MouseEvent) {

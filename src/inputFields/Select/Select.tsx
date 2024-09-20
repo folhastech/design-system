@@ -140,13 +140,13 @@ export const Select = React.forwardRef(
             <SelectRoot.Content
               onBlur={onBlur}
               position={!isMobile ? "popper" : undefined}
-              className="w-full h-full z-50 overflow-y-scroll"
+              className="w-full h-full z-50 "
               ref={(ref) => {
                 ref?.addEventListener("touchend", (e) => e.preventDefault())
               }}
             >
               <SelectRoot.Viewport
-                className="h-full m-2 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-scroll"
+                className="m-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-auto"
               >
                 {opts?.map((item) => {
                   return (
