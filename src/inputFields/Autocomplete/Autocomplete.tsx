@@ -119,7 +119,7 @@ export const Autocomplete = React.forwardRef(
                   key={item.value}
                   value={item.value}
                   className={
-                    "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none"
+                    "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none hover:bg-gray-50 cursor-pointer"
                   }
                 >
                   {item.label}
