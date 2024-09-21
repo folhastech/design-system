@@ -1,3 +1,4 @@
+import React from "react"
 const modulateColor = (color: string, percent: number) => {
   const num = parseInt(color.replace('#', ''), 16)
   const amt = Math.round(2.55 * percent)
