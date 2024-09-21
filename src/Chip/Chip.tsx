@@ -25,7 +25,7 @@ export type ChipProps = {
   showDot?: boolean
 }
 
-const Chip = ({ label, color = '#3b82f6', modulateFactor = 55, labelColor, showDot = true }: ChipProps) => {
+export const Chip = ({ label, color = '#3b82f6', modulateFactor = 55, labelColor, showDot = true }: ChipProps) => {
   const modulatedColor = modulateColor(color, modulateFactor)
 
   return (
@@ -46,5 +46,3 @@ const Chip = ({ label, color = '#3b82f6', modulateFactor = 55, labelColor, showD
     </div>
   )
 }
-
-export default Chip
