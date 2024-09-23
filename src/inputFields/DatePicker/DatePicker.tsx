@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { format, isValid, parse, parseISO, setDefaultOptions } from "date-fns"
+import { format, isDate, isValid, parse, parseISO, setDefaultOptions } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import React, { useEffect, useRef, useState } from "react"
 import { DayPicker } from "react-day-picker"
@@ -57,19 +57,34 @@ export const DatePicker = React.forwardRef(
     } = useController({ name, control, rules })
 
     const setValueInput = (value: any) => {
-      if (value) {
-        let isoValue = null
-        try {
-          isoValue = parseISO(value)
-          if (!isValid(isoValue)) {
-            isoValue = null
-          }
-        } catch (e) {
-          console.error(e)
-        }
-        setInputValue(format(isoValue ?? value, "dd/MM/yyyy"))
+      if (!value) {
+        setInputValue('');
+        return;
       }
-    }
+      let dateValue;
+      if (isDate(value)) {
+        // If it's already a Date object
+        dateValue = value;
+      } else if (typeof value === 'string') {
+        // If it's a string, try parsing it as ISO first
+        dateValue = parseISO(value);
+
+        // If parsing as ISO fails, try parsing with a specific format
+        if (!isValid(dateValue)) {
+          dateValue = parse(value, 'yyyy-MM-dd', new Date());
+        }
+      } else if (typeof value === 'number') {
+        // If it's a timestamp (number of milliseconds)
+        dateValue = new Date(value);
+      }
+
+      if (isValid(dateValue)) {
+        setInputValue(format(dateValue, 'dd/MM/yyyy'));
+      } else {
+        console.error('Invalid date input:', value);
+        setInputValue('');
+      }
+    };
 
     useEffect(() => {
       setValueInput(value)
