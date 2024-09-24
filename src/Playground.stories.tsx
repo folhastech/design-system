@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form"
 import { Drawer } from "./Drawer"
 import { Select } from "./inputFields/Select"
 import { TextField } from "./inputFields/TextField"
+import { Switch } from "./inputFields/Switch"
 
 const Template: StoryFn = (args) => {
   const { control, register } = useForm()
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-
+  const [a, setA] = useState(false)
   return (
     <Drawer
       open={isDrawerOpen}
@@ -25,10 +26,30 @@ const Template: StoryFn = (args) => {
         control={control}
       />
       <Select
-        {...args}
         control={control}
         {...register("example")}
+        options={[
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 1", name: "Option 1" },
+          { id: "Option 2", name: "Option 2" },
+          { id: "Option 3", name: "Option 3" },
+        ]}
         getOptionLabel={(option) => option as string}
+      />
+      <Switch
+        control={control}
+        {...register("switch")}
+        onClick={() => setA(!a)}
+        propValue={a}
       />
     </Drawer>
   )

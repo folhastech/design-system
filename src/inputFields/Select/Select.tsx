@@ -72,7 +72,7 @@ export const Select = React.forwardRef(
     }: SelectProps<T>,
     ref: React.ForwardedRef<HTMLButtonElement>
   ) => {
-    const [optionLabel, setOptionLabel] = useState<string | undefined>()
+    const [optionLabel, setOptionLabel] = useState<string>("")
     const [opts, setOpts] = useState<OptType[] | undefined>()
     const size = useSize()
     const isMobile = size === "sm" || size === "md"
@@ -82,7 +82,10 @@ export const Select = React.forwardRef(
     } = useController({ name, control, rules })
 
     useEffect(() => {
-      if (!value) return
+      if (!value) {
+        setOptionLabel("")
+        return
+      }
 
       if (!getOptionLabel) {
         setOptionLabel(
@@ -105,7 +108,6 @@ export const Select = React.forwardRef(
       } else {
         setOpts(options as OptType[])
       }
-
     }, [options])
 
     if (!shouldRender) return <></>
@@ -115,7 +117,7 @@ export const Select = React.forwardRef(
         <SelectRoot.Root
           autoComplete="on"
           onValueChange={onChange}
-          value={value}
+          value={value || ""}
           disabled={disabled}
         >
           <SelectRoot.Trigger
@@ -136,33 +138,31 @@ export const Select = React.forwardRef(
               <Icon name="expand_more" />
             </SelectRoot.Icon>
           </SelectRoot.Trigger>
-          <SelectRoot.Portal>
-            <SelectRoot.Content
-              onBlur={onBlur}
-              position={!isMobile ? "popper" : undefined}
-              className="w-full h-full z-50 "
-              ref={(ref) => {
-                ref?.addEventListener("touchend", (e) => e.preventDefault())
-              }}
+          <SelectRoot.Content
+            onBlur={onBlur}
+            position={!isMobile ? "popper" : undefined}
+            className="w-full h-full z-50 "
+            ref={(ref) => {
+              ref?.addEventListener("touchend", (e) => e.preventDefault())
+            }}
+          >
+            <SelectRoot.Viewport
+              className="m-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-auto"
             >
-              <SelectRoot.Viewport
-                className="m-2 max-h-60 rounded-lg border border-b-gray-30 bg-white w-rdx-select-content-available-width w-[350px] lg:w-[700px] overflow-y-auto"
-              >
-                {opts?.map((item) => {
-                  return (
-                    <SelectItem
-                      className="hover:bg-gray-50 cursor-pointer"
-                      key={item?.value}
-                      value={item?.value}
-                      disabled={item?.disabled}
-                    >
-                      {item?.label}
-                    </SelectItem>
-                  )
-                })}
-              </SelectRoot.Viewport>
-            </SelectRoot.Content>
-          </SelectRoot.Portal>
+              {opts?.map((item) => {
+                return (
+                  <SelectItem
+                    className="hover:bg-gray-50 cursor-pointer"
+                    key={item?.value}
+                    value={item?.value}
+                    disabled={item?.disabled}
+                  >
+                    {item?.label}
+                  </SelectItem>
+                )
+              })}
+            </SelectRoot.Viewport>
+          </SelectRoot.Content>
         </SelectRoot.Root>
       </div>
     )
