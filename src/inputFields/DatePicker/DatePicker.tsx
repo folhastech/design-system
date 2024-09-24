@@ -121,8 +121,8 @@ export const DatePicker = React.forwardRef(
     }
 
     const handleDaySelect = (date?: Date) => {
-      onChange(date)
       if (date) {
+        onChange(date.toISOString())
         setValueInput(date)
       } else {
         setInputValue("")

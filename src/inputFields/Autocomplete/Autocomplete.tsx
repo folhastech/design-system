@@ -49,6 +49,7 @@ export const Autocomplete = React.forwardRef(
       filter,
       shouldRender = true
     }: AutocompleteProps<T>,
+    ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     const [query, setQuery] = useState("")
     const [opt, setOpt] = useState<OptType[]>([])
