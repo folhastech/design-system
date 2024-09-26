@@ -88,7 +88,7 @@ export const Autocomplete = React.forwardRef(
         <Combobox immediate value={value} onChange={onChange} disabled={disabled}>
           <ComboboxInput
             className={clsx(
-              "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 border-gray-10 pr-2 text-lg text-gray-0 focus:outline-none placeholder:mb-4 placeholder:text-lg placeholder:text-gray-0",
+              "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 pr-2 text-lg text-gray-0 focus:outline-none placeholder:mb-4 placeholder:text-lg placeholder:text-gray-0",
               {
                 "border-error-10 text-error-10 placeholder:text-error-10":
                   invalid,
