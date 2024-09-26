@@ -122,7 +122,7 @@ export const TextField = React.forwardRef(
                 : "placeholder:text-gray-10"
               } `,
               {
-                "border-gray-30 text-gray-30 placeholder:text-gray-30":
+                "border-gray-30 text-gray-0 placeholder:text-gray-0":
                   disabled,
               }
             )}
