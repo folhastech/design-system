@@ -17,6 +17,7 @@ export default {
 
 export const Primary = Template.bind({})
 Primary.args = {
+  disabled: true,
   placeholder: "Type here...",
   type: "text",
 }

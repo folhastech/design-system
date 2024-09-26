@@ -83,12 +83,12 @@ export const Autocomplete = React.forwardRef(
     if (!shouldRender) return <></>
 
     return (
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 text-gray-0">
         {label && <label className=" text-primary-0 font-semibold ">{label}</label>}
         <Combobox immediate value={value} onChange={onChange} disabled={disabled}>
           <ComboboxInput
             className={clsx(
-              "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 pr-2 text-lg text-gray-10 focus:outline-none placeholder:mb-4 placeholder:text-lg placeholder:text-gray-10",
+              "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 border-gray-10 pr-2 text-lg text-gray-0 focus:outline-none placeholder:mb-4 placeholder:text-lg placeholder:text-gray-0",
               {
                 "border-error-10 text-error-10 placeholder:text-error-10":
                   invalid,
@@ -120,7 +120,7 @@ export const Autocomplete = React.forwardRef(
                   key={item.value}
                   value={item.value}
                   className={
-                    "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none hover:bg-gray-50 cursor-pointer"
+                    "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-0 focus:outline-none hover:bg-gray-50 cursor-pointer"
                   }
                 >
                   {item.label}
@@ -132,7 +132,7 @@ export const Autocomplete = React.forwardRef(
               <ComboboxOption
                 value={"load"}
                 className={
-                  "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-10 focus:outline-none"
+                  "flex h-[45px] w-full items-center justify-between border-b-2 border-gray-30 p-2 text-sm text-gray-0 focus:outline-none"
                 }
                 disabled
               >

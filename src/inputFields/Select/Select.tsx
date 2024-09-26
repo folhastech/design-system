@@ -123,13 +123,13 @@ export const Select = React.forwardRef(
           <SelectRoot.Trigger
             ref={ref}
             className={clsx(
-              "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 pr-2 text-lg text-gray-10 focus:outline-none",
+              "mb-2 flex h-[45px] w-full items-center justify-between border-b-2 pr-2 text-lg text-gray-0 focus:outline-none",
               invalid ? "border-error-10 text-error-10 " : "border-gray-30",
               className
             )}
           >
             <SelectRoot.Value
-              className={`${optionLabel ? "text-primary-0" : "text-gray-10"}`}
+              className={`${optionLabel ? "text-primary-0" : "text-gray-0"}`}
               placeholder={placeholder}
             >
               {optionLabel ?? placeholder}
@@ -157,7 +157,7 @@ export const Select = React.forwardRef(
                     value={item?.value}
                     disabled={item?.disabled}
                   >
-                    {item?.label}
+                    <span className="text-gray-0">{item?.label}</span>
                   </SelectItem>
                 )
               })}

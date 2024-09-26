@@ -119,7 +119,7 @@ export const TextField = React.forwardRef(
               placeholder &&
               `placeholder:mb-4 placeholder:text-lg ${invalid
                 ? "placeholder:text-error-10"
-                : "placeholder:text-gray-10"
+                : "placeholder:text-gray-0"
               } `,
               {
                 "border-gray-30 text-gray-0 placeholder:text-gray-0":

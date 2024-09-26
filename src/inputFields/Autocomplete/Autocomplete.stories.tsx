@@ -27,7 +27,7 @@ Primary.args = {
   rules: { required: true },
   placeholder: "Placeholder",
   isLoading: false,
-  disabled: false,
+  disabled: true,
   getMoreOptions: () => { },
   options: {
     pages: [

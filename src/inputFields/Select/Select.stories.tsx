@@ -17,6 +17,7 @@ export default {
 export const Primary = Template.bind({})
 Primary.args = {
   placeholder: "Select",
+  disabled: false,
   options: [
     { id: "Option 1", name: "Option 1" },
     { id: "Option 1", name: "Option 1" },
