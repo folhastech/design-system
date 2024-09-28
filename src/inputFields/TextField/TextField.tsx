@@ -114,6 +114,7 @@ export const TextField = React.forwardRef(
           <input
             readOnly={readOnly}
             ref={ref || ownRef}
+            onWheel={(e) => type === "number" && e.currentTarget.blur()}
             className={clsx(
               "apearance-none w-full focus:outline-none",
               placeholder &&
